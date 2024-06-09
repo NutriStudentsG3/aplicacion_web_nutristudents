@@ -1,0 +1,8 @@
+<div class="searchContainer"  [class.focus]="showDropdown">
+    <input class="searchInput" [formControl]="searchControl" placeholder="Search..."  (focus)="showDropdown = true">
+    <ul class="searchDropdown" *ngIf="filteredItems.length > 0 && showDropdown">
+        <a class="searchItem" *ngFor="let item of filteredItems" [routerLink]="['/food', item.id]"  (click)="clearSearch()">
+            {{ item.name }}
+        </a>
+    </ul>
+</div>
