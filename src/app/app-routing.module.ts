@@ -2,10 +2,10 @@ import { NgModule, Component} from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotImplementedComponent } from './shared/components/not-implemented/not-implemented.component';
 import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.component';
-
+import { LoginComponent } from './auth/login/login.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: NotImplementedComponent },
   {
     path: '',
@@ -16,7 +16,7 @@ const routes: Routes = [
       { path: 'food/:id', component: NotImplementedComponent },
     ]
   },
-  { path: '**', redirectTo: '/home' } 
+  { path: '**', redirectTo: '/login' } 
 ];
 
 @NgModule({
