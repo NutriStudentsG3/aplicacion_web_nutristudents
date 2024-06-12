@@ -1,3 +1,4 @@
+import { ProfilePageComponent } from './account/pages/profile-page/profile-page.component';
 import { NgModule, Component} from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotImplementedComponent } from './shared/components/not-implemented/not-implemented.component';
@@ -12,7 +13,8 @@ const routes: Routes = [
     component: MainLayoutComponent,
     children: [
       { path: 'home', component: NotImplementedComponent },
-      { path: 'profile', component: NotImplementedComponent},
+      { path: 'profile', component: ProfilePageComponent},
+      { path: 'profile/:id', component: NotImplementedComponent},
       { path: 'food/:id', component: NotImplementedComponent },
     ]
   },
