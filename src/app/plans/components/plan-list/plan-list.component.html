@@ -1,0 +1,20 @@
+<div class="plan-list-container">
+    <h1>Mis Planes de Alimentación</h1>
+    
+    <!-- Botones para crear nuevo plan y explorar planes -->
+    <div class="plan-actions">
+      <button [routerLink]="'/plans/create'">Nuevo Plan</button>
+      <button [routerLink]="'/plans/explore'">Explorar Planes</button>
+    </div>
+  
+    <!-- Lista de planes guardados -->
+    <div class="saved-plans">
+      <h2>Planes Guardados</h2>
+      <ul>
+        <li *ngFor="let plan of savedPlans">
+          <a [routerLink]="['/plans/detail', plan.id]">{{ plan.name }}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  

@@ -1,0 +1,47 @@
+<mat-card>
+    <mat-card-title>Crear Nuevo Plan</mat-card-title>
+    <mat-card-content>
+      <form (ngSubmit)="guardarPlan()">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Nombre</mat-label>
+          <input matInput [(ngModel)]="nuevoPlan.name" name="name" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Descripción</mat-label>
+          <textarea matInput [(ngModel)]="nuevoPlan.description" name="description" required></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Categoría</mat-label>
+          <input matInput [(ngModel)]="nuevoPlan.category" name="category" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Cantidad de Semanas</mat-label>
+          <input matInput type="number" [(ngModel)]="weeksCount" name="weeks" required (input)="updateWeeks()" min="1">
+        </mat-form-field>
+        
+        <div *ngFor="let week of nuevoPlan.weeks; let weekIndex = index" class="week-section">
+          <h3>Semana {{ weekIndex + 1 }}</h3>
+          <div *ngFor="let day of week.days; let dayIndex = index" class="day-section">
+            <h4>Día {{ dayIndex + 1 }}</h4>
+            <div *ngFor="let meal of day.meals; let mealIndex = index" class="meal-section">
+              <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Nombre de la comida</mat-label>
+                <input matInput [(ngModel)]="meal.name" name="mealName-{{weekIndex}}-{{dayIndex}}-{{mealIndex}}" required>
+              </mat-form-field>
+              <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Ingredientes</mat-label>
+                <input matInput [(ngModel)]="meal.ingredients" name="mealIngredients-{{weekIndex}}-{{dayIndex}}-{{mealIndex}}" required>
+              </mat-form-field>
+              <mat-form-field appearance="fill" class="full-width">
+                <mat-label>Calorías</mat-label>
+                <input matInput type="number" [(ngModel)]="meal.calories" name="mealCalories-{{weekIndex}}-{{dayIndex}}-{{mealIndex}}" required>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+  
+        <button mat-raised-button color="primary" type="submit">Guardar</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  

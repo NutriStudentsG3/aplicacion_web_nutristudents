@@ -4,21 +4,25 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
+import { PlansModule } from '../plans/plans.module';
 
 
 @NgModule({
   declarations: [
     SearchBarComponent,
-    MainLayoutComponent
+    MainLayoutComponent,
+    
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
+    PlansModule
   ],
   exports: [
     SearchBarComponent,
-    MainLayoutComponent
+    MainLayoutComponent,
+    
   ]
 })
 export class SharedModule { }

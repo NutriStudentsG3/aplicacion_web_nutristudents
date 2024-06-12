@@ -1,10 +1,12 @@
 <header class="header-container">
     <a class="header-title" href="/home">SnackTrack</a>
     <app-search-bar/>
+    
     <div class="header-nav">
         <a class="header-nav-item" href="/home">Home</a>
         <a class="header-nav-item" href="/recipes">Recipes</a>
         <a class="header-nav-item" href="/community">Community</a>
+        <a class="header-nav-item" href="/plans">Planes</a>
     </div>
     <ng-container *ngIf="user; else loggedOut">
         <a href="/profile">

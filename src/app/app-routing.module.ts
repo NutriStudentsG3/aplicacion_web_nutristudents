@@ -14,6 +14,7 @@ const routes: Routes = [
       { path: 'home', component: NotImplementedComponent },
       { path: 'profile', component: NotImplementedComponent},
       { path: 'food/:id', component: NotImplementedComponent },
+      { path: 'plans', loadChildren: () => import('./plans/plans.module').then(m => m.PlansModule) }
     ]
   },
   { path: '**', redirectTo: '/home' } 

@@ -1,0 +1,21 @@
+<div *ngIf="plan">
+    <h1>{{ plan.name }}</h1>
+    <p>{{ plan.description }}</p>
+    <p>Categoría: {{ plan.category }}</p>
+    
+    <div *ngFor="let week of plan.weeks; let weekIndex = index">
+      <h2>Semana {{ weekIndex + 1 }}</h2>
+      <div *ngFor="let day of week.days; let dayIndex = index">
+        <h3>Día {{ dayIndex + 1 }}</h3>
+        <ul>
+          <li *ngFor="let meal of day.meals">
+            <strong>{{ meal.name }}</strong>: {{ meal.ingredients.join(', ') }} - {{ meal.calories }} calorías
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <button (click)="goToSavedPlans()">Volver a Mis Planes Guardados</button>
+
+  

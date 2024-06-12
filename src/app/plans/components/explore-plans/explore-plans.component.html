@@ -1,0 +1,15 @@
+    <!-- Mostrar solo si hay planes explorados -->
+    <div *ngIf="exploredPlans.length > 0">
+        <h2>Planes Explorados</h2>
+        <ul>
+        <li *ngFor="let plan of exploredPlans">
+            <!-- Mostrar el nombre del plan -->
+            {{ plan.name }}
+    
+            <!-- Botón para añadir el plan a la lista de planes guardados -->
+            <button (click)="addPlanToSaved(plan)">Guardar</button>
+        </li>
+        </ul>
+        <button (click)="goToSavedPlans()">Volver a Mis Planes Guardados</button>
+    </div>
+    
