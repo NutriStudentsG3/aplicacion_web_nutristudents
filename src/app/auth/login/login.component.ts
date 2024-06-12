@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,12 +11,25 @@ import { NgForm } from '@angular/forms';
 export class LoginComponent {
   email:string ='';
   password: string ='';
+  loginError: string = '';
 
-  onSubmit(form: NgForm): void {
+  private readonly validUser = {
+    email: 'snacktrack@gmail.com',
+    password: 'password123'
+  };
+
+  constructor(private router: Router) {}
+
+  onSubmit(form: any) {
     if (form.valid) {
+      if (this.email === this.validUser.email && this.password === this.validUser.password) {
+        this.loginError = '';
 
-      console.log('Email:', this.email);
-      console.log('Password:', this.password);
+        this.router.navigate(['/home']);
+      } else {
+        this.loginError = 'Usuario o Contraseña incorrectos';
+      }
     }
   }
+
 }
