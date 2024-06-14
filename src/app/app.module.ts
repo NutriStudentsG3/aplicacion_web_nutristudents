@@ -8,6 +8,7 @@ import { SharedModule } from './shared/shared.module';
 import { AccountModule } from './account/account.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -20,9 +21,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SharedModule,
     AccountModule,
     BrowserAnimationsModule,
+    AuthModule,
   ],
   providers: [
-  
     provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
