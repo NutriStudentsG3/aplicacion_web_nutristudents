@@ -1,16 +1,3 @@
-.mat-tab-group {
-    background: red; 
-}
-
-.mat-tab-label {
-    color: #88BB49; 
-  }
-  
-  .mat-tab-label-active {
-    color: #ffffff;
-    background-color: #88BB49;
-  }
-  
-.mat-ink-bar {
-    background-color: #88BB49;
+.tab-group{
+  color: white;
 }
