@@ -4,13 +4,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { NotImplementedComponent } from './shared/components/not-implemented/not-implemented.component';
 import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.component';
 import { LoginComponent } from './auth/login/login.component';
+import { AuthGuard } from './auth/services/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   {
     path: '',
     component: MainLayoutComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: 'home', component: NotImplementedComponent },
       { path: 'profile', component: ProfilePageComponent},
@@ -18,7 +20,7 @@ const routes: Routes = [
       { path: 'food/:id', component: NotImplementedComponent },
     ]
   },
-  { path: '**', redirectTo: '/login' } 
+  { path: '**', redirectTo: '/home' } 
 ];
 
 @NgModule({

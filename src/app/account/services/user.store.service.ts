@@ -10,7 +10,7 @@ export class UserStoreService {
   user$ = this.userSubject.asObservable();
 
   constructor() {
-    this.loadSampleUser()
+    
   }
 
   setUser(user: User){
