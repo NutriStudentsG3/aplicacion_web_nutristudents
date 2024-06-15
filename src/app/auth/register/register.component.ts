@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { RegisterService } from '../services/register.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +18,7 @@ export class RegisterComponent {
 
   private apiUrl = 'http://localhost:4200/'; // Cambia esto por tu URL de API
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private registerService : RegisterService, private route: Router) { }
 
   onSubmit(form: NgForm): void {
     if (form.valid) {
@@ -26,17 +28,20 @@ export class RegisterComponent {
         password: this.password,
         passwordRepeat: this.passwordRepeat
       };
+      if(this.passwordRepeat!=this.password){
+        this.message = 'Las contraseñas deben ser iguales';
+        return;
+      }
+      
+      if(this.registerService.createUser(userData)){
+        this.route.navigate(['/home'])
+      }
+      else{
+        this.message = 'Error intentelo mas tarde.';
+        return;
+      }
 
-      this.http.post<any>(this.apiUrl, userData).subscribe(
-        response => {
-          console.log('Registro exitoso', response);
-          this.message = 'Registro exitoso';
-        },
-        error => {
-          console.error('Error en el registro', error);
-          this.message = 'Error en el registro';
-        }
-      );
+
     } else {
       this.message = 'Por favor, complete todos los campos correctamente.';
     }

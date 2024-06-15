@@ -25,7 +25,7 @@ const routes: Routes = [
       { path: 'food/:id', component: NotImplementedComponent },
     ]
   },
-  { path: '**', redirectTo: '/register' } 
+  { path: '**', redirectTo: '/home' } 
 ];
 
 @NgModule({
