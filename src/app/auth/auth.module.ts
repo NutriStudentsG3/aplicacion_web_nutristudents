@@ -3,10 +3,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http'; 
+import { LoginComponent } from './login/login.component';
+
 
 
 @NgModule({
   declarations: [
+
+    LoginComponent,
     RegisterComponent
   ],
   imports: [
@@ -14,8 +18,10 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule
   ],
-  exports: [
+  exports:[
+    LoginComponent,
     RegisterComponent
+
   ]
 })
 export class AuthModule { }

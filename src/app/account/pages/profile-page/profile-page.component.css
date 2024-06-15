@@ -1,0 +1,5 @@
+.profile-layout{
+    display: grid;
+    grid-template-columns: 30% auto;
+    gap: 1rem;
+}
