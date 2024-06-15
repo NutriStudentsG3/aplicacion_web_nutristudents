@@ -5,22 +5,30 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
 import { AccountModule } from './account/account.module';
-
-
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthModule } from './auth/auth.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    
-  ],
+    AppComponent
+    ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     SharedModule,
-    AccountModule
+    AccountModule,
+    BrowserAnimationsModule,
+    AuthModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

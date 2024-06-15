@@ -1,0 +1,38 @@
+.user-header{
+    width: 100%;
+    position: relative;
+}
+.background-header{
+    background-color: #E5FFC6;
+    height: 150px;
+    border-radius: 10px;
+}
+
+.profile-card-width{
+    width: 20%;
+    aspect-ratio: 1/1;
+}
+
+.user-image{
+    position: absolute;
+    background-color: lightgray;
+    border-radius: 100%;
+    width: 40%;
+    aspect-ratio: 1/1;
+    border:5px solid white; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 150px;
+}
+
+.side-info-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.profile-username{
+    font-size: xx-large;
+    color: #88BB49;
+}
