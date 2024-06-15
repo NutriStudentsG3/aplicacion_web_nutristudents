@@ -1,0 +1,49 @@
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+<body>
+    <div class="container">
+        <div class="left-side">
+            <img src="./images/logo.png" alt="Logo" class="logo">
+        </div>
+        <div class="right-side">
+            <div class="login-box">
+                <h1 class="bienvenida">¿CUÁL ES TU OBJETIVO?</h1>
+                <div class="options">
+                    <button class="option" (click)="onSelectObjective('perderPeso')" [class.selected]="selectedObjective === 'perderPeso'">
+                        <div class="content">
+                            <div class="text">
+                                <h2>PERDER PESO</h2>
+                                <p>Un plan de comida bajo en calorías pero alto en proteína</p>
+                            </div>
+                            <img src="./images/maquina1.png" alt="Perder peso">
+                        </div>
+                    </button>
+                    <button class="option" (click)="onSelectObjective('mantenimiento')" [class.selected]="selectedObjective === 'mantenimiento'">
+                        <div class="content">
+                            <div class="text">
+                                <h2>MANTENIMIENTO</h2>
+                                <p>Mantener el peso corporal a través de un equilibrio entre carbohidratos y proteínas</p>
+                            </div>
+                            <img src="./images/loto 1.png" alt="Mantenimiento">
+                        </div>
+                    </button>
+                    <button class="option" (click)="onSelectObjective('aumentarMasaMuscular')" [class.selected]="selectedObjective === 'aumentarMasaMuscular'">
+                        <div class="content">
+                            <div class="text">
+                                <h2>AUMENTAR MASA MUSCULAR</h2>
+                                <p>Aumentar el peso corporal enfocado en la ganancia de músculo</p>
+                            </div>
+                            <img src="./images/musculo 1.png" alt="Aumentar masa muscular">
+                        </div>
+                    </button>
+                </div>
+                <form (ngSubmit)="onSubmit()">
+                    <input type="hidden" name="objetivo" [(ngModel)]="selectedObjective" required>
+                   
+                        <button type='submit'class="submit-btn" routerLink="/meetuser">SIGUIENTE</button>
+                          
+                </form>
+            </div>
+        </div>
+    </div>
+</body>

@@ -5,14 +5,21 @@ import { NotImplementedComponent } from './shared/components/not-implemented/not
 import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.component';
 
 
+
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { ObejectivesComponent } from './auth/obejectives/obejectives.component';
+import { MeetuserComponent } from './auth/meetuser/meetuser.component';
+import { ResultComponent } from './auth/result/result.component';
 import { AuthGuard } from './auth/services/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'obejectives', component: ObejectivesComponent },
+  { path: 'meetuser', component: MeetuserComponent },
+  { path: 'result', component:ResultComponent},
 
   {
     path: '',
@@ -25,7 +32,7 @@ const routes: Routes = [
       { path: 'food/:id', component: NotImplementedComponent },
     ]
   },
-  { path: '**', redirectTo: '/register' } 
+ 
 ];
 
 @NgModule({

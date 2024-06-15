@@ -7,9 +7,8 @@ import { TasksTabComponent } from './components/tasks-tab/tasks-tab.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatFormField } from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -23,7 +22,7 @@ import {MatInputModule} from '@angular/material/input';
     MatTabsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    MatFormField,
+    MatFormFieldModule,
     MatInputModule,
   ]
 })
