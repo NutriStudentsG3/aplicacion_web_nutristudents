@@ -6,6 +6,7 @@ import { Plan } from '../models/plan.model';
   providedIn: 'root'
 })
 export class PlanService {
+  private empty_plans: Plan[] = [];
   private plans: Plan[] = [
     {
       id: '1',
@@ -63,7 +64,7 @@ export class PlanService {
   constructor() {}
 
   getPlans(): Observable<Plan[]> {
-    return of(this.plans);
+    return of(this.empty_plans);
   }
 
   getPlan(id: string): Observable<Plan | undefined> {
@@ -76,7 +77,7 @@ export class PlanService {
   // Establecer la propiedad saved del plan como true
     plan.saved = true;
   // Agregar el plan al arreglo de planes
-    this.plans.push(plan);
+    this.empty_plans.push(plan);
   }
 
   

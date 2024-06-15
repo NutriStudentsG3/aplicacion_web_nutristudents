@@ -18,7 +18,6 @@
           <mat-label>Cantidad de Semanas</mat-label>
           <input matInput type="number" [(ngModel)]="weeksCount" name="weeks" required (input)="updateWeeks()" min="1">
         </mat-form-field>
-        
         <div *ngFor="let week of nuevoPlan.weeks; let weekIndex = index" class="week-section">
           <h3>Semana {{ weekIndex + 1 }}</h3>
           <div *ngFor="let day of week.days; let dayIndex = index" class="day-section">

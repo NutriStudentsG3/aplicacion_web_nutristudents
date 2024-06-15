@@ -10,6 +10,7 @@ import { Plan } from '../../models/plan.model';
 })
 export class PlanListComponent implements OnInit {
   savedPlans: Plan[] = [];
+  
 
   constructor(private planService: PlanService) { }
 
