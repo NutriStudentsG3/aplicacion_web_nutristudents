@@ -1,0 +1,43 @@
+<section id="subscription-form" class="subscription-form">
+    <div class="summary-details-container">
+        <div class="summary">
+            <h2>Resumen del pedido</h2>
+            <p class="price">S/ 0.00  <small>IVA incluido</small></p>
+            <p>Luego S/ 15.99 al mes</p>
+            <p>Premium Subscription</p>
+            <p>Subtotal: S/ 0.00</p>
+            <p>IVA: S/0.00</p>
+        </div>
+        <div class="details">
+            <h2>Sus datos</h2>
+            <div class="payment-methods-container">
+                <div class="payment-methods">
+                    <img src="\images\Visa.png" alt="Visa">
+                    <img src="\images\MasterCard.jpg" alt="MasterCard">
+                    <img src="\images\American_Express.png" alt="American Express">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="card-number">Número de la tarjeta</label>
+                <input type="number" id="card-number" name="card-number" placeholder="xxxx xxxx xxxx xxxx" maxlength="16" required>
+            </div>
+            <div class="form-group">
+                <label for="card-name">Nombre en la tarjeta</label>
+                <input type="text" id="card-name" name="card-name" oninput="this.value = this.value.replace(/[^a-zA-Z]/g, '')" required>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="expiry-date">Fecha de vencimiento</label>
+                    <input type="number" id="expiry-date" name="expiry-date" placeholder="MM/YY" pattern="\d{2}/\d{2}" maxlength="5" required>
+                </div>
+                <div class="form-group">
+                    <label for="cvv">Código de seguridad</label>
+                    <input type="number" id="cvv" name="cvv" placeholder="CVV" pattern="\d{3,4}" maxlength="3" required>
+                </div>
+            </div>
+            
+            <button class="submit-btn">Suscríbase ahora</button>
+        </div>
+    </div>
+</section>
