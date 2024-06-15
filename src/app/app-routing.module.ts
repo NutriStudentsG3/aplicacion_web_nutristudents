@@ -2,11 +2,11 @@ import { NgModule, Component} from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotImplementedComponent } from './shared/components/not-implemented/not-implemented.component';
 import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.component';
-
+import { RegisterComponent } from './auth/register/register.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'login', component: NotImplementedComponent },
+  { path: 'register', component: RegisterComponent },
   {
     path: '',
     component: MainLayoutComponent,
@@ -16,7 +16,7 @@ const routes: Routes = [
       { path: 'food/:id', component: NotImplementedComponent },
     ]
   },
-  { path: '**', redirectTo: '/home' } 
+  { path: '**', redirectTo: '/register' } 
 ];
 
 @NgModule({
