@@ -9,11 +9,12 @@ import { AccountModule } from './account/account.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthModule } from './auth/auth.module';
+import { HttpClientModule } from '@angular/common/http'; 
 
 @NgModule({
   declarations: [
-    AppComponent,
-  ],
+    AppComponent
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -22,6 +23,7 @@ import { AuthModule } from './auth/auth.module';
     AccountModule,
     BrowserAnimationsModule,
     AuthModule,
+    HttpClientModule
   ],
   providers: [
     provideAnimationsAsync()
