@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
-import { Plan, Week,Day,Meal } from '../../models/plan.model';
+import { Component, OnInit } from '@angular/core';
+import { Plan, Week, Day, Meal } from '../../models/plan.model';
 import { PlanService } from '../../services/plan.service';
 import { Router } from '@angular/router';
-
+import { FormBuilder, FormGroup, Validators, FormArray, AbstractControl } from '@angular/forms'; // Importar FormArray
 
 @Component({
   selector: 'app-create-plan',
   templateUrl: './create-plan.component.html',
-  styleUrl: './create-plan.component.css'
+  styleUrls: ['./create-plan.component.css']
 })
-export class CreatePlanComponent {
+export class CreatePlanComponent implements OnInit {
   nuevoPlan: Plan = {
     id: '',
     name: '',
@@ -20,57 +20,93 @@ export class CreatePlanComponent {
   };
 
   weeksCount: number = 1;
+  form: FormGroup;
+  secondForm: FormGroup;
+  showSecondForm: boolean = false;
 
-  constructor(private router: Router, private planService: PlanService) { } // Inyecta Router aquí
+  constructor(private router: Router, private planService: PlanService, private fb: FormBuilder) {
+    this.form = this.fb.group({
+      nombre: ['', [Validators.required, Validators.minLength(1)]],
+      categoria: ['', Validators.required],
+      descripcion: [''],
+      semanas: ['', [Validators.required, Validators.min(1), Validators.max(20)]]
+    });
+    this.secondForm = this.fb.group({
+      weeks: this.fb.array([])
+    });
+  }
 
-  updateWeeks(): void {
-    if (this.weeksCount < 1) {
-      this.weeksCount = 1; // No permitir valores menores a 1
+  ngOnInit(): void {
+    this.form = this.fb.group({
+      nombre: ['', [Validators.required, Validators.minLength(1)]],
+      categoria: ['', Validators.required],
+      descripcion: [''],
+      semanas: ['', [Validators.required, Validators.min(1), Validators.max(20)]]
+    });
+  }
+
+  onSubmit(): void {
+    if (this.form.valid) {
+      console.log(this.form.value);
+      this.nuevoPlan.name = this.form.value.nombre;
+      this.nuevoPlan.category = this.form.value.categoria;
+      this.nuevoPlan.description = this.form.value.descripcion;
+      this.weeksCount = this.form.value.semanas;
+      const weeksArray = this.secondForm.get('weeks') as FormArray;
+      for (let i = 0; i < this.weeksCount; i++) {
+        weeksArray.push(this.fb.group({
+          days: this.fb.array([])
+        }));
+      }
+
+      this.showSecondForm = true;
+    } else {
+      console.log('Formulario no válido');
     }
+  }
 
-    while (this.nuevoPlan.weeks.length < this.weeksCount) {
-      this.nuevoPlan.weeks.push({
-        days: Array(7).fill(null).map(() => ({
-          meals: Array(3).fill(null).map(() => ({
-            name: '',
-            ingredients: [],
-            calories: 0
+  get weeks(): FormArray {
+    return this.secondForm.get('weeks') as FormArray;
+  }
+
+  days(weekIndex: number): FormArray {
+    return this.weeks.at(weekIndex).get('days') as FormArray;
+  }
+
+  meals(weekIndex: number, dayIndex: number): FormArray {
+    return this.days(weekIndex).at(dayIndex).get('meals') as FormArray;
+  }
+
+  addDay(weekIndex: number): void {
+    this.days(weekIndex).push(this.fb.group({
+      meals: this.fb.array([])
+    }));
+  }
+
+  addMeal(weekIndex: number, dayIndex: number): void {
+    this.meals(weekIndex, dayIndex).push(this.fb.group({
+      name: ['', Validators.required],
+      ingredients: ['', Validators.required],
+      calories: [0, Validators.required]
+    }));
+  }
+
+  onSecondSubmit(): void {
+    if (this.secondForm.valid) {
+      this.nuevoPlan.weeks = this.secondForm.value.weeks.map((week: any) => ({
+        days: week.days.map((day: any) => ({
+          meals: day.meals.map((meal: any) => ({
+            name: meal.name,
+            ingredients: meal.ingredients.split(','), // Split ingredients by comma
+            calories: meal.calories
           }))
         }))
-      });
+      }));
+      this.planService.addPlan(this.nuevoPlan);
+      console.log('Plan añadido:', this.nuevoPlan);
+      this.router.navigate(['/path-to-somewhere']); // Navega a la ruta deseada después de guardar el plan
+    } else {
+      console.log('Segundo formulario no válido');
     }
-
-    while (this.nuevoPlan.weeks.length > this.weeksCount) {
-      this.nuevoPlan.weeks.pop();
-    }
   }
-
-  guardarPlan(): void {
-    // Asigna un ID único al plan (puedes generar un ID de forma más robusta según sea necesario)
-    this.nuevoPlan.id = Math.random().toString(36).substring(2);
-    // Guardar el nuevo plan utilizando el servicio de PlanService
-    this.planService.addPlan(this.nuevoPlan);
-    // Limpiar el formulario después de guardar el plan
-    this.resetForm();
-  }
-
-  resetForm(): void {
-    this.nuevoPlan = {
-      id: '',
-      name: '',
-      description: '',
-      category: '',
-      weeks: [],
-      saved: false
-    };
-    this.weeksCount = 1;
-    this.updateWeeks();
-  }
-
-  goToSavedPlans(): void {
-    
-    // Redirigir a la ruta correspondiente de los planes guardados
-    this.router.navigate(['/plans']);
-  }
-
 }

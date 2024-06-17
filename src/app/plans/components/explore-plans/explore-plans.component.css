@@ -1,0 +1,160 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  form {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  input[type="text"], 
+  input[type="number"], 
+  textarea, 
+  select {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 100%;
+  }
+  
+  input[type="submit"], 
+  button {
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    padding: 10px 15px;
+    text-align: center;
+  }
+  
+  input[type="submit"]:hover, 
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  h3, h4 {
+    border-bottom: 2px solid #4CAF50;
+    color: #4CAF50;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+  }
+  
+  optgroup {
+    font-weight: bold;
+    font-style: italic;
+  }
+  
+  option {
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  /* Estilo para los botones */
+  button[type="button"] {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+    padding: 8px 12px;
+  }
+  
+  button[type="button"]:hover {
+    background-color: #45a049;
+  }
+  
+  /* Estilo para los botones Agregar día y Agregar comida */
+  button[type="button"]:nth-child(2) {
+    margin-top: 20px;
+  }
+  
+  /* Estilo para separar las semanas, días y comidas */
+  div[formGroupName], div[formArrayName] {
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos para la lista de planes explorados */
+  div {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+  }
+  
+  h2 {
+    color: #4CAF50;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+  }
+  
+  a {
+    color: #4CAF50;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  button {
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+    padding: 8px 12px;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  button:last-of-type {
+    margin-top: 20px;
+  }
+  
+  /* Espaciado entre el texto del plan y el botón */
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  li button {
+    margin-left: 20px;
+  }
+  

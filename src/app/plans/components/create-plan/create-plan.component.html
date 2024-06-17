@@ -1,46 +1,72 @@
-<mat-card>
-    <mat-card-title>Crear Nuevo Plan</mat-card-title>
-    <mat-card-content>
-      <form (ngSubmit)="guardarPlan()">
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label>Nombre</mat-label>
-          <input matInput [(ngModel)]="nuevoPlan.name" name="name" required>
-        </mat-form-field>
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label>Descripción</mat-label>
-          <textarea matInput [(ngModel)]="nuevoPlan.description" name="description" required></textarea>
-        </mat-form-field>
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label>Categoría</mat-label>
-          <input matInput [(ngModel)]="nuevoPlan.category" name="category" required>
-        </mat-form-field>
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label>Cantidad de Semanas</mat-label>
-          <input matInput type="number" [(ngModel)]="weeksCount" name="weeks" required (input)="updateWeeks()" min="1">
-        </mat-form-field>
-        <div *ngFor="let week of nuevoPlan.weeks; let weekIndex = index" class="week-section">
-          <h3>Semana {{ weekIndex + 1 }}</h3>
-          <div *ngFor="let day of week.days; let dayIndex = index" class="day-section">
-            <h4>Día {{ dayIndex + 1 }}</h4>
-            <div *ngFor="let meal of day.meals; let mealIndex = index" class="meal-section">
-              <mat-form-field appearance="fill" class="full-width">
-                <mat-label>Nombre de la comida</mat-label>
-                <input matInput [(ngModel)]="meal.name" name="mealName-{{weekIndex}}-{{dayIndex}}-{{mealIndex}}" required>
-              </mat-form-field>
-              <mat-form-field appearance="fill" class="full-width">
-                <mat-label>Ingredientes</mat-label>
-                <input matInput [(ngModel)]="meal.ingredients" name="mealIngredients-{{weekIndex}}-{{dayIndex}}-{{mealIndex}}" required>
-              </mat-form-field>
-              <mat-form-field appearance="fill" class="full-width">
-                <mat-label>Calorías</mat-label>
-                <input matInput type="number" [(ngModel)]="meal.calories" name="mealCalories-{{weekIndex}}-{{dayIndex}}-{{mealIndex}}" required>
-              </mat-form-field>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <label for="nombre">Nombre: </label>
+  <input type="text" id="nombre" formControlName="nombre" placeholder="Coloca el nombre de plan" required minlength="1">
+  <label for="categoria">Categoria de tu plan: </label>
+  <select formControlName="categoria" id="categoria">
+    <optgroup label="Bulking">
+      <option option value="Bulking Limpio">Bulking Limpio</option>
+      <option value="Bulking Sucio">Bulking Sucio</option>
+    </optgroup>
+    <optgroup label="Cutting">
+      <option value="Definición">Definición</option>
+      <option value="Recorte rapido">Recorte rapido</option>  
+    </optgroup>
+    <optgroup label="Mantenimiento">
+      <option value="Mantenimiento Peso">Mantenimiento Peso</option>
+      <option value="Mantenimiento de Composición Corporal">Mantenimiento de Composición Corporal</option>
+    </optgroup>
+    <optgroup label="Rendimiento Deportivo">
+      <option value="Pre-competición">Pre-competición</option>
+      <option value="Post-competición">Post-competición</option>
+    </optgroup>
+    <optgroup label="Salud General">
+      <option value="Salud Cardiovascular">Salud Cardiovascular</option>
+      <option value="Control de Enfermedades Crónicas">Control de Enfermedades Crónicas</option>
+      </optgroup>
+    <optgroup label="Preferencias Dietéticas">
+      <option value="Vegetariano/Vegano">Vegetariano/Vegano</option>
+      <option value="Sin Gluten">Sin Gluten</option>
+    </optgroup>
+    <optgroup label="Time Based">
+      <option value="Ayuno Intermitente">Ayuno Intermitente</option>
+      <option value="Comidas Frecuentes">Comidas Frecuentes</option>
+    </optgroup>
+  </select>
+
+  <label for="descripcion">Descripción: </label>
+
+  <textarea formControlName="descripcion" id="descripcion" placeholder="Descripción de tu plan"></textarea>
+  <label for="semanas">Semanas</label>
+  <input type="number" id="semanas" formControlName="semanas" placeholder="duración en semanas" min="1" max="20">
+
+  <input type="submit" value="Enviar">
+</form>
+
+<!-- Segundo formulario, se muestra solo si showSecondForm es true -->
+<form *ngIf="showSecondForm" [formGroup]="secondForm" (ngSubmit)="onSecondSubmit()">
+  <div formArrayName="weeks">
+    <div *ngFor="let week of weeks.controls; let weekIndex = index" [formGroupName]="weekIndex">
+      <h3>Semana {{ weekIndex + 1 }}</h3>
+      <div formArrayName="days">
+        <div *ngFor="let day of days(weekIndex).controls; let dayIndex = index" [formGroupName]="dayIndex">
+          <h4>Día {{ dayIndex + 1 }}</h4>
+    
+          <div formArrayName="meals">
+            <div *ngFor="let meal of meals(weekIndex, dayIndex).controls; let mealIndex = index" [formGroupName]="mealIndex">
+              <label for="meal-name">Nombre de la comida: </label>
+              <input type="text" formControlName="name" placeholder="Nombre de la comida">
+    
+              <label for="meal-ingredients">Ingredientes: </label>
+              <input type="text" formControlName="ingredients" placeholder="Ingredientes separados por comas">
+    
+              <label for="meal-calories">Calorías: </label>
+              <input type="number" formControlName="calories" placeholder="Calorías">
+    
             </div>
           </div>
+          <button type="button" (click)="addMeal(weekIndex, dayIndex)">Agregar comida</button>
         </div>
-  
-        <button mat-raised-button color="primary" type="submit">Guardar</button>
-      </form>
-    </mat-card-content>
-  </mat-card>
-  
+      </div>
+      <button type="button" (click)="addDay(weekIndex)">Agregar día</button>
+    </div>
+    

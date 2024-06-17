@@ -1,0 +1,92 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  /* Contenedor principal */
+  .plan-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .plan-details {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .plan-name {
+    color: #4CAF50;
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+  
+  .plan-description {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .plan-category {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .week {
+    margin-bottom: 20px;
+  }
+  
+  .week h2 {
+    color: #4CAF50;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .day {
+    margin-bottom: 20px;
+  }
+  
+  .day h3 {
+    color: #4CAF50;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .meals-list {
+    padding: 0;
+  }
+  
+  .meals-list .meal {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+  }
+  
+  .meals-list .meal strong {
+    color: #4CAF50;
+  }
+  
+  /* Botón para volver */
+  .back-button {
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    padding: 15px;
+    width: 100%;
+    display: block;
+    text-align: center;
+  }
+  
+  .back-button:hover {
+    background-color: #45a049;
+  }
+  
