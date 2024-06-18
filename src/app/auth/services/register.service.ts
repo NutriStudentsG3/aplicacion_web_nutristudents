@@ -6,7 +6,7 @@ import { UserStoreService } from '../../account/services/user.store.service';
   providedIn: 'root'
 })
 export class RegisterService {
-  private apiUrl = 'http://localhost:4200/api/register'; // URL de tu API para registrar usuarios
+  
 
   constructor(private userStore : UserStoreService) { }
 

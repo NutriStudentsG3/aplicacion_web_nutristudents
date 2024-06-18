@@ -10,22 +10,28 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  nombre: string = '';
+  username: string = '';
+  firstname: string= '';
+  lastname: string= '';
+  phone: string= '';
   email: string = '';
   password: string = '';
   passwordRepeat: string = '';
   message: string = '';
+
 
   constructor(private registerService : RegisterService, private route: Router) { }
 
   onSubmit(form: NgForm): void {
     if (form.valid) {
       const userData = {
-        username: this.nombre,
+        username: this.username,
+        firstname: this.firstname,
+        lastname: this.lastname,
+        phone: this.phone,
         email: this.email,
         password: this.password,
-        firstname: '',
-        lastname: ''
+        
       };
 
       if(this.passwordRepeat!=this.password){
