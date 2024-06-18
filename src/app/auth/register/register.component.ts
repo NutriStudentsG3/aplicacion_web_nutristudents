@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import { HttpClient } from '@angular/common/http';
 import { RegisterService } from '../services/register.service';
 import { Router } from '@angular/router';
 
@@ -17,20 +16,18 @@ export class RegisterComponent {
   passwordRepeat: string = '';
   message: string = '';
 
-
-
-  private apiUrl = 'http://localhost:4200/'; // Cambia esto por tu URL de API
-
-  constructor(private http: HttpClient, private registerService : RegisterService, private route: Router) { }
+  constructor(private registerService : RegisterService, private route: Router) { }
 
   onSubmit(form: NgForm): void {
     if (form.valid) {
       const userData = {
-        nombre: this.nombre,
+        username: this.nombre,
         email: this.email,
         password: this.password,
-        passwordRepeat: this.passwordRepeat
+        firstname: '',
+        lastname: ''
       };
+
       if(this.passwordRepeat!=this.password){
         this.message = 'Las contraseñas deben ser iguales';
         return;

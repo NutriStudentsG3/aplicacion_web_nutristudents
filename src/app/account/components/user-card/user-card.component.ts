@@ -15,7 +15,9 @@ export class UserCardComponent {
     this.subscription = this.userStore.user$.subscribe(user => {
       this.user = user
     });
+    console.log(this.user)
   }
+
   
 
 }

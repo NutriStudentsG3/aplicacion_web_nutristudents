@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserStoreService } from '../../account/services/user.store.service';
-import { HttpClient } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,22 +8,30 @@ import { HttpClient } from '@angular/common/http';
 export class RegisterService {
   private apiUrl = 'http://localhost:4200/api/register'; // URL de tu API para registrar usuarios
 
-  constructor(private http: HttpClient,private userStore : UserStoreService) { }
+  constructor(private userStore : UserStoreService) { }
 
 
   createUser(newuser : any) : boolean{
-    
-     this.http.post<any>(this.apiUrl, userData).subscribe(
-        response => {
-          console.log('Registro exitoso', response);
-          this.message = 'Registro exitoso';
-        },
-        error => {
-          console.error('Error en el registro', error);
-          this.message = 'Error en el registro';
-        },
-     )
+    console.log("grdogmdo")
+
+    try{
+        let user = this.userStore.getUser()
+        let newUser = {...user??{}, ...newuser}
+        this.userStore.setUser(newUser)
+        console.log(newUser)
+        return true
     }
+    catch(e){
+      return false
+    }
+  }
+
+  setGoal(goal : any){
+    console.log("setting")
+    let user = this.userStore.getUser()
+    let newUser = {...user??{}, ...goal}
+    this.userStore.setUser(newUser)
+  }
 
 
 }

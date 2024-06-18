@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RegisterService } from '../services/register.service';
 
 
 @Component({
@@ -15,15 +16,15 @@ export class ObejectivesComponent {
   onSelectObjective(objective: string): void {
     this.selectedObjective = objective;
   }
-  constructor(private router: Router) { }
+  constructor(private router: Router, private registerService: RegisterService) { }
 
   onSubmit(): void {
     if (this.selectedObjective) {
-      // Lógica para manejar el objetivo seleccionado y redirigir
+      
       console.log('Objetivo seleccionado:', this.selectedObjective);
+      this.registerService.setGoal({plan: this.selectedObjective})
       this.router.navigateByUrl('/meetuser');
 
-      // Aquí podrías redirigir a la siguiente página o realizar otra acción
     } else {
       alert('Por favor, selecciona un objetivo.');
     }
