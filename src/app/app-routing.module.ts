@@ -13,22 +13,22 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'free-trial', component: FreeTrialComponent },
-  { path: 'subscription-form', component: SubscriptionFormComponent},
-
+  
   {
     path: '',
     component: MainLayoutComponent,
     canActivate: [AuthGuard],
     children: [
-
-      { path: 'home', component: FreeTrialComponent },
+      
+      { path: 'home', component: NotImplementedComponent},
       { path: 'profile', component: ProfilePageComponent},
       { path: 'profile/:id', component: NotImplementedComponent},
       { path: 'food/:id', component: NotImplementedComponent },
+      { path: 'free-trial', component: FreeTrialComponent },
+      { path: 'subscription-form', component: SubscriptionFormComponent},
     ]
   },
-  { path: '**', redirectTo: '/free-trial' } 
+  { path: '**', redirectTo: '/home' } 
 ];
 
 @NgModule({
