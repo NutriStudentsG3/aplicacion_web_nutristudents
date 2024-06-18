@@ -2,16 +2,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    
     padding: 20px;
     box-sizing: border-box;
+    width: 100%;
 }
 
 .subscription-form {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    
     max-width: 1000px; /* Ajusta según necesites */
     width: 100%;
     display: flex;
@@ -42,7 +43,7 @@
 
 .summary .price {
     font-size: 26px;
-    color: #800080;
+    color: #88BB49;
 }
 
 .summary .price small {
@@ -98,7 +99,7 @@
 }
 
 .submit-btn {
-    background-color: #800080;
+    background-color: #88BB49;
     color: #fff;
     padding: 15px;
     border: none;
@@ -109,7 +110,7 @@
 }
 
 .submit-btn:hover {
-    background-color: #730073;
+    background-color: #08A65A;
 }
 
 .payment-methods {
