@@ -1,13 +1,9 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
-import { RegisterService } from '../services/register.service'; // Asegúrate de importar el servicio correcto
 
-interface UserRegistrationResponse {
-  success: boolean;
-  message?: string; // Mensaje opcional de éxito o error
-  // Otros campos según sea necesario
-}
+import { HttpClient } from '@angular/common/http';
+import { RegisterService } from '../services/register.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +17,11 @@ export class RegisterComponent {
   passwordRepeat: string = '';
   message: string = '';
 
-  constructor(private registerService: RegisterService, private router: Router) { }
+
+
+  private apiUrl = 'http://localhost:4200/'; // Cambia esto por tu URL de API
+
+  constructor(private http: HttpClient, private registerService : RegisterService, private route: Router) { }
 
   onSubmit(form: NgForm): void {
     if (form.valid) {
@@ -31,16 +31,19 @@ export class RegisterComponent {
         password: this.password,
         passwordRepeat: this.passwordRepeat
       };
-
-      const isRegistered = this.registerService.registerUser(userData);
-
-      if (isRegistered) {
-        this.message = 'Registro exitoso';
-        // Redirige al usuario a la siguiente página (en este caso, 'objectives')
-        this.router.navigateByUrl('/obejectives');
-      } else {
-        this.message = 'Error en el registro';
+      if(this.passwordRepeat!=this.password){
+        this.message = 'Las contraseñas deben ser iguales';
+        return;
       }
+      
+      if(this.registerService.createUser(userData)){
+        this.route.navigate(['/obejectives'])
+      }
+      else{
+        this.message = 'Error intentelo mas tarde.';
+        return;
+      }
+
     } else {
       this.message = 'Por favor, complete todos los campos correctamente.';
     }
