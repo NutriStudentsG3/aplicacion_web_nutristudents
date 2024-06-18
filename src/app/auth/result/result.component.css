@@ -1,0 +1,77 @@
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f0f0f0;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.left-side {
+    flex: 1;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.right-side {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(#53b32f, #88BB49);
+}
+
+.logo {
+    width: 30%;
+    height: auto;
+}
+
+.login-box {
+    max-width: 400px;
+    background: #ffffff;
+    padding: 60px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border-radius: 10px;
+}
+
+.login-box h1 {
+    margin-bottom: 10px;
+    font-size: 30px;
+    font-weight: 900;
+    color: #4caf50;
+}
+
+.login-box form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-box button {
+    padding: 10px;
+    font-size: 16px;
+    background: #4caf50;
+    color: #ffffff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif; /* Establecer la fuente Inter */
+    font-weight: 300; /* Establecer el peso de la fuente */
+    text-align: center; /* Centrar el texto */
+}
+
+.login-box button:hover {
+    background: #45a049;
+}
+
+.login-box img {
+    width: 400px;
+    height: auto;
+    margin-bottom: 10px;
+
+}
