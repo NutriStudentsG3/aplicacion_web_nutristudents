@@ -26,6 +26,7 @@ export class PlanDetailComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.planService.getPlan(id).subscribe(plan => this.plan = plan);
+
     }
   }
   goToSavedPlans(): void {

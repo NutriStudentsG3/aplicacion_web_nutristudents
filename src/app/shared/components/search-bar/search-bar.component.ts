@@ -17,6 +17,7 @@ export class SearchBarComponent {
     { id: 4, name: 'Date' },
     { id: 5, name: 'Elderberry' }   
   ];
+
   filteredItems: any[] = [];
 
   constructor(private hostElement: ElementRef) {

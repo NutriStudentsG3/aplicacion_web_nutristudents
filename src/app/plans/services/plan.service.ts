@@ -13,52 +13,68 @@ export class PlanService {
       name: 'Plan de Ejemplo 1',
       description: 'Descripción del plan de ejemplo 1',
       category: 'Mantenimiento',
+      createdDate: new Date(2024, 12, 12),
       weeks: [
         {
           days: [
             {
-              meals: [
-                { name: 'Desayuno', ingredients: ['Avena', 'Plátano'], calories: 200 },
-                { name: 'Almuerzo', ingredients: ['Pollo', 'Arroz', 'Ensalada'], calories: 500 }
-              ]
+              breakfast: [
+                { name: 'Leche', foodId:"1312313",  calories: 200 ,  grams:100, protein:100, sugar:100, fat:100},
+                { name: 'Leche', foodId:"1312313",  calories: 200 ,  grams:100, protein:100, sugar:100, fat:100},
+              ],
+              dinner:[],
+              snack:[],
+              lunch:[]
             },
             {
-              meals: [
-                { name: 'Desayuno', ingredients: ['Huevos', 'Pan Integral'], calories: 250 },
-                { name: 'Almuerzo', ingredients: ['Pescado', 'Quinoa'], calories: 450 }
-              ]
+              breakfast: [
+                { name: 'Leche', foodId:"1312313",  calories: 200 ,  grams:100, protein:100, sugar:100, fat:100},
+                { name: 'Leche', foodId:"1312313",  calories: 200 ,  grams:100, protein:100, sugar:100, fat:100},
+              ],
+              dinner:[],
+              snack:[],
+              lunch:[]
             }
           ]
         }
       ],
-      saved: false // Propiedad "saved" agregada
+      saved: false, 
+      isPublic: true,
     },
     {
       id: '2',
       name: 'Plan de Ejemplo 2',
       description: 'Descripción del plan de ejemplo 2',
       category: 'Pérdida de Peso',
+      createdDate: new Date(2024, 12, 12),
       weeks: [
         {
           days: [
             {
-              meals: [
-                { name: 'Desayuno', ingredients: ['Avena', 'Frutas', 'Yogur'], calories: 300 },
-                { name: 'Almuerzo', ingredients: ['Ensalada', 'Pechuga de Pollo', 'Arroz Integral'], calories: 400 }
-              ]
+              breakfast: [
+                { name: 'Leche', foodId:"1312313",  calories: 200 ,  grams:100, protein:100, sugar:100, fat:100},
+                { name: 'Leche', foodId:"1312313",  calories: 200 ,  grams:100, protein:100, sugar:100, fat:100},
+              ],
+              dinner:[],
+              snack:[],
+              lunch:[]
             },
             {
-              meals: [
-                { name: 'Desayuno', ingredients: ['Batido de Proteínas', 'Frutos Secos'], calories: 350 },
-                { name: 'Almuerzo', ingredients: ['Pescado al Vapor', 'Verduras al Vapor'], calories: 300 }
-              ]
+              breakfast: [
+                { name: 'Leche', foodId:"1312313",  calories: 200 ,  grams:100, protein:100, sugar:100, fat:100},
+                { name: 'Leche', foodId:"1312313",  calories: 200 ,  grams:100, protein:100, sugar:100, fat:100},
+              ],
+              dinner:[],
+              snack:[],
+              lunch:[]
             }
           ]
         }
       ],
-      saved: false // Propiedad "saved" agregada
+      saved: false, 
+      isPublic: true,
     }
-    // Agrega más planes de ejemplo aquí
+
   ];
 
   constructor() {}

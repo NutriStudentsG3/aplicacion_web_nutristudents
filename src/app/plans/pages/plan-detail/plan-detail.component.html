@@ -3,14 +3,18 @@
     <h1 class="plan-name">{{ plan.name }}</h1>
     <p class="plan-description">{{ plan.description }}</p>
     <p class="plan-category">Categoría: {{ plan.category }}</p>
+    <ng-container *ngIf="this.plan.saved">
+      <button>delete</button>
+    </ng-container>
+    
     
     <div *ngFor="let week of plan.weeks; let weekIndex = index" class="week">
       <h2>Semana {{ weekIndex + 1 }}</h2>
       <div *ngFor="let day of week.days; let dayIndex = index" class="day">
         <h3>Día {{ dayIndex + 1 }}</h3>
         <ul class="meals-list">
-          <li *ngFor="let meal of day.meals" class="meal">
-            <strong>{{ meal.name }}</strong>: {{ meal.ingredients.join(', ') }} - {{ meal.calories }} calorías
+          <li *ngFor="let meal of day.breakfast" class="meal">
+            <strong>{{ meal.name }}</strong>: {{ meal.protein }} - {{ meal.calories }} calorías
           </li>
         </ul>
       </div>

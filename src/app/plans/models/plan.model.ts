@@ -1,22 +1,31 @@
 export interface Plan {
-  id: string;
-  name: string;
-  description: string;
-  category: string;
-  weeks: Week[];
-  saved: boolean; 
-}
+  id: string,
+  name: string,
+  description: string,
+  category: string,
+  weeks: Week[],
+  saved: boolean, 
+  isPublic : boolean,
+  createdDate : Date,
+} 
 
 export interface Week {
-  days: Day[];
+  days: Day[] ,
 }
 
 export interface Day {
-  meals: Meal[];
+  breakfast : PlanFood[],
+  lunch : PlanFood[],
+  snack: PlanFood[],
+  dinner: PlanFood[],
 }
 
-export interface Meal {
-  name: string;
-  ingredients: string[];
-  calories: number;
+export interface PlanFood {
+  foodId : string,
+  name : string
+  grams : number,
+  protein: number,
+  sugar: number,
+  fat: number,
+  calories : number,
 }

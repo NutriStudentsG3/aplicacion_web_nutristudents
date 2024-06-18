@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Plan, Week, Day, Meal } from '../../models/plan.model';
+import { Plan } from '../../models/plan.model';
 import { PlanService } from '../../services/plan.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormArray, AbstractControl } from '@angular/forms'; // Importar FormArray
@@ -15,8 +15,10 @@ export class CreatePlanComponent implements OnInit {
     name: '',
     description: '',
     category: '',
+    createdDate: new Date(12,12,12),
     weeks: [],
-    saved: false
+    saved: false,
+    isPublic: true,
   };
 
   weeksCount: number = 1;
