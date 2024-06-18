@@ -9,6 +9,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormField } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import { FreeTrialComponent } from './free-trial/free-trial.component';
+import { SubscriptionFormComponent } from './subscription-form/subscription-form.component';
 
 
 @NgModule({
@@ -16,15 +18,24 @@ import {MatInputModule} from '@angular/material/input';
     ProfilePageComponent,
     InformationFormComponent,
     UserCardComponent,
-    TasksTabComponent
+    TasksTabComponent,
+    FreeTrialComponent,
+    SubscriptionFormComponent
   ],
+ 
   imports: [
     CommonModule,
     MatTabsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MatFormField,
-    MatInputModule,
-  ]
+    MatInputModule
+  ],
+  
+  exports: [
+    FreeTrialComponent,
+    SubscriptionFormComponent  
+  ],
+
 })
 export class AccountModule { }

@@ -1,0 +1,134 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    padding: 20px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.subscription-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    
+    max-width: 1000px; /* Ajusta según necesites */
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Asegura que el contenido dentro del formulario esté centrado */
+}
+
+.summary-details-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 85%;
+}
+
+.summary, .details {
+    width: 48%;
+}
+
+.subscription-form h2 {
+    margin-top: 0;
+    color: #333;
+    width: 100%;
+}
+
+.summary {
+    font-size: 26px;
+    color: #666;
+}
+
+.summary .price {
+    font-size: 26px;
+    color: #88BB49;
+}
+
+.summary .price small {
+    font-size: 14px;
+    color: #999;
+}
+
+.details h2 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.payment-methods-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.payment-logos {
+    display: flex;
+    gap: 10px;
+    margin-right: 10px;
+}
+
+.payment-logos .logo {
+    max-width: 100px;
+    height: auto;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap; /* Permite que los elementos se muevan a la siguiente línea si es necesario */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.submit-btn {
+    background-color: #88BB49;
+    color: #fff;
+    padding: 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.submit-btn:hover {
+    background-color: #08A65A;
+}
+
+.payment-methods {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.payment-methods img {
+    margin: 0 10px;
+    height: 40px; 
+    width: auto; 
+}
+
+.error {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
