@@ -6,12 +6,16 @@ import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.co
 
 
 
+
+
+import { AuthGuard } from './auth/services/auth.guard';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { ObejectivesComponent } from './auth/obejectives/obejectives.component';
 import { MeetuserComponent } from './auth/meetuser/meetuser.component';
 import { ResultComponent } from './auth/result/result.component';
-import { AuthGuard } from './auth/services/auth.guard';
+import { FreeTrialComponent } from './account/free-trial/free-trial.component';
+import { SubscriptionFormComponent } from './account/subscription-form/subscription-form.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -21,15 +25,20 @@ const routes: Routes = [
   { path: 'meetuser', component: MeetuserComponent },
   { path: 'result', component:ResultComponent},
 
+
+  
   {
     path: '',
     component: MainLayoutComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: 'home', component: NotImplementedComponent },
+      
+      { path: 'home', component: NotImplementedComponent},
       { path: 'profile', component: ProfilePageComponent},
       { path: 'profile/:id', component: NotImplementedComponent},
       { path: 'food/:id', component: NotImplementedComponent },
+      { path: 'free-trial', component: FreeTrialComponent },
+      { path: 'subscription-form', component: SubscriptionFormComponent},
     ]
   },
 
