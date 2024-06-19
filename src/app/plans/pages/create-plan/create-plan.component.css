@@ -1,95 +1,75 @@
-/* Estilos generales */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
-    margin: 0;
-    padding: 20px;
-  }
-  
-  form {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    padding: 20px;
-  }
-  
-  label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  input[type="text"], 
-  input[type="number"], 
-  textarea, 
-  select {
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 14px;
-    margin-bottom: 10px;
-    padding: 10px;
-    width: 100%;
-  }
-  
-  input[type="submit"], 
-  button {
-    background-color: #4CAF50;
-    border: none;
-    border-radius: 4px;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px;
-    padding: 10px 15px;
-    text-align: center;
-  }
-  
-  input[type="submit"]:hover, 
-  button:hover {
-    background-color: #45a049;
-  }
-  
-  h3, h4 {
-    border-bottom: 2px solid #4CAF50;
-    color: #4CAF50;
-    margin-bottom: 10px;
-    padding-bottom: 5px;
-  }
-  
-  optgroup {
-    font-weight: bold;
-    font-style: italic;
-  }
-  
-  option {
-    font-weight: normal;
-    font-style: normal;
-  }
-  
-  /* Estilo para los botones */
-  button[type="button"] {
-    background-color: #4CAF50;
-    color: white;
-    cursor: pointer;
-    font-size: 14px;
-    margin-top: 10px;
-    padding: 8px 12px;
-  }
-  
-  button[type="button"]:hover {
-    background-color: #45a049;
-  }
-  
-  /* Estilo para los botones Agregar día y Agregar comida */
-  button[type="button"]:nth-child(2) {
-    margin-top: 20px;
-  }
-  
-  /* Estilo para separar las semanas, días y comidas */
-  div[formGroupName], div[formArrayName] {
-    margin-bottom: 20px;
-  }
-  
+/* General form styling */
+form {
+  max-width: 400px;
+  margin: auto;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Label styling */
+form label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333333;
+  font-weight: bold;
+}
+
+/* Input and select styling */
+form input[type="text"],
+form input[type="number"],
+form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Placeholder color */
+form input::placeholder {
+  color: #a0a0a0;
+}
+
+/* Checkbox container styling */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Checkbox styling */
+form input[type="checkbox"] {
+  width: auto;
+  margin-right: 10px;
+}
+
+/* Submit button styling */
+form input[type="submit"] {
+  background-color: #9acd32;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+  background-color: #7aa72b;
+}
+
+/* Focus and hover effects */
+form input[type="text"]:focus,
+form input[type="number"]:focus,
+form select:focus {
+  border-color: #9acd32;
+  outline: none;
+}

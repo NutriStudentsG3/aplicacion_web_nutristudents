@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Plan } from '../../models/plan.model';
 import { PlanService } from '../../services/plan.service';
-import { Router } from '@angular/router'; // Asegúrate de importar Router
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-explore-plans',
@@ -12,7 +11,7 @@ import { Router } from '@angular/router'; // Asegúrate de importar Router
 export class ExplorePlansComponent implements OnInit {
   exploredPlans: Plan[] = [];
 
-  constructor(private router: Router, private planService: PlanService) { } // Inyecta Router aquí
+  constructor(private router: Router, private planService: PlanService) {}
 
   ngOnInit(): void {
     // Cargar los planes explorados al iniciar el componente
@@ -28,14 +27,17 @@ export class ExplorePlansComponent implements OnInit {
   }
 
   addPlanToSaved(plan: Plan): void {
-    // Agregar el plan a la lista de planes guardados
-
-
-    this.planService.addPlan(plan);
+    // Verificar si el plan ya está guardado
+    if (this.planService.isPlanSaved(plan.id)) {
+      // Mostrar alerta si el plan ya está guardado
+      alert('Este plan ya está guardado.');
+    } else {
+      // Agregar el plan a la lista de planes guardados
+      this.planService.addPlan(plan);
+    }
   }
 
   goToSavedPlans(): void {
-    
     // Redirigir a la ruta correspondiente de los planes guardados
     this.router.navigate(['/plans']);
   }

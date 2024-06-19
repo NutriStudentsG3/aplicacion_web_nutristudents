@@ -12,13 +12,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MealDetailComponent } from './components/meal-detail/meal-detail.component';
 
 @NgModule({
   declarations: [
     PlanListComponent,
     ExplorePlansComponent,
     CreatePlanComponent,
-    PlanDetailComponent
+    PlanDetailComponent,
+    MealDetailComponent 
   ],
   imports: [
     CommonModule,

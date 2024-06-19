@@ -1,100 +1,89 @@
-/* Estilos generales */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
-    margin: 0;
-    padding: 20px;
-  }
-  
-  /* Contenedor principal */
-  .plan-list-container {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    padding: 20px;
-  }
-  
-  .plan-list-container h1 {
-    color: #4CAF50;
-    font-size: 28px;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  /* Botones para crear y explorar planes */
-  .plan-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  
-  .plan-actions button {
-    background-color: #4CAF50;
-    border: none;
-    border-radius: 4px;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-    padding: 15px;
-    text-align: center;
-    width: 100%;
-  }
-  
-  .plan-actions button:hover {
-    background-color: #45a049;
-  }
-  
-  /* Lista de planes guardados */
-  .saved-plans {
-    margin-top: 20px;
-  }
-  
-  .saved-plans h2 {
-    color: #4CAF50;
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .saved-plans ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .saved-plans li {
-    border-bottom: 1px solid #eee;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-  }
-  
-  .saved-plans a {
-    color: #4CAF50;
-    text-decoration: none;
-  }
-  
-  .saved-plans a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Botones generales */
-  button {
-    background-color: #4CAF50;
-    border: none;
-    border-radius: 4px;
-    color: white;
-    cursor: pointer;
-    font-size: 14px;
-    padding: 15px;
-    width: 100%;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  
-  button:last-of-type {
-    margin-top: 20px;
-  }
-  
+  font-family: Arial, sans-serif;
+}
+
+.plan-list-container {
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.plan-list-container h1 {
+  font-size: 2em; /* Incrementa el tamaño de fuente */
+  margin-bottom: 20px;
+}
+
+.plan-actions {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.plan-actions button {
+  background-color: #8BC34A;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 25px;
+  font-size: 1.2em; /* Incrementa el tamaño de fuente */
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.plan-actions button:hover {
+  background-color: #7CB342;
+}
+
+.saved-plans {
+  text-align: left;
+}
+
+.saved-plans h2 {
+  font-size: 1.5em; /* Incrementa el tamaño de fuente */
+  margin-bottom: 10px;
+}
+
+.saved-plans ul {
+  list-style: none;
+  padding: 0;
+}
+
+.saved-plans li {
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.saved-plans a {
+  color: black;
+  text-decoration: none;
+  font-size: 1.2em; /* Incrementa el tamaño de fuente */
+}
+
+.saved-plans a:hover {
+  text-decoration: underline;
+}
+
+.saved-plans li button {
+  background: none;
+  border: none;
+  color: #8BC34A;
+  cursor: pointer;
+  font-size: 1em; /* Incrementa el tamaño de fuente */
+  transition: color 0.3s;
+}
+
+.saved-plans li button:hover {
+  color: #7CB342;
+}
+
+/* Estilo para el mensaje de "Aún no hay elementos guardados" */
+.no-plans-message {
+  font-size: 1.2em; /* Incrementa el tamaño de fuente */
+  color: #999999; /* Tono más tenue */
+  text-align: center;
+  margin-top: 20px;
+}

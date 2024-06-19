@@ -1,0 +1,70 @@
+<!-- <div class="meal-details" [ngClass]="{ 'open': isOpen }">
+  <div class="header" (click)="toggleAccordion()">
+    <h3>{{ mealType }}</h3>
+  </div>
+  <div class="content">
+    <div *ngFor="let food of meal">
+      <p>{{ food.name }} {{ food.grams }} {{ food.protein }} {{ food.calories }} {{ food.fat }}</p>
+      <div *ngIf="isEditing">
+        <button >Editar</button>
+      </div>
+      
+    </div>
+  </div>
+</div> -->
+
+
+<div class="meal-details" [ngClass]="{ 'open': isOpen }">
+  <div class="header" (click)="toggleAccordion()">
+    <h3>{{ mealType }}</h3>
+  </div>
+  <div class="content">
+    <div *ngFor="let food of meal; let i = index">
+      <div *ngIf="!isEditing">
+        <p>{{ food.name }} {{ food.grams }}g {{ food.protein }}g proteína {{ food.calories }}cal {{ food.fat }}g grasa</p>
+        <button *ngIf="isEditing" (click)="toggleEdit()">Editar</button>
+      </div>
+      <div *ngIf="isEditing">
+        <label for="name-{{i}}">Nombre</label>
+        <input id="name-{{i}}" [(ngModel)]="food.name" />
+
+        <label for="grams-{{i}}">Gramos</label>
+        <input id="grams-{{i}}" [(ngModel)]="food.grams" type="number" />
+
+        <label for="protein-{{i}}">Proteína (g)</label>
+        <input id="protein-{{i}}" [(ngModel)]="food.protein" type="number" />
+
+        <label for="calories-{{i}}">Calorías</label>
+        <input id="calories-{{i}}" [(ngModel)]="food.calories" type="number" />
+
+        <label for="fat-{{i}}">Grasa (g)</label>
+        <input id="fat-{{i}}" [(ngModel)]="food.fat" type="number" />
+      </div>
+    </div>
+
+    <div *ngIf="isEditing">
+      <div class="new-meal">
+        <h4>Añadir Nueva Comida</h4>
+        <label for="new-name">Nombre</label>
+        <input id="new-name" [(ngModel)]="newMeal.name" />
+
+        <label for="new-grams">Gramos</label>
+        <input id="new-grams" [(ngModel)]="newMeal.grams" type="number" />
+
+        <label for="new-protein">Proteína (g)</label>
+        <input id="new-protein" [(ngModel)]="newMeal.protein" type="number" />
+
+        <label for="new-calories">Calorías</label>
+        <input id="new-calories" [(ngModel)]="newMeal.calories" type="number" />
+
+        <label for="new-fat">Grasa (g)</label>
+        <input id="new-fat" [(ngModel)]="newMeal.fat" type="number" />
+
+        <button (click)="addNewMeal()">Agregar</button>
+      </div>
+    </div>
+
+    
+  </div>
+</div>
+

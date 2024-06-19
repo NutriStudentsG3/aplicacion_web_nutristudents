@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { Plan } from '../models/plan.model';
 
 @Injectable({
@@ -7,6 +7,7 @@ import { Plan } from '../models/plan.model';
 })
 export class PlanService {
   private empty_plans: Plan[] = [];
+  private explored_plans: Plan[] = [];
   private plans: Plan[] = [
     {
       id: '1',
@@ -19,26 +20,28 @@ export class PlanService {
           days: [
             {
               breakfast: [
-                { name: 'Leche', foodId:"1312313",  calories: 200 ,  grams:100, protein:100, sugar:100, fat:100},
-                { name: 'Leche', foodId:"1312313",  calories: 200 ,  grams:100, protein:100, sugar:100, fat:100},
+                { name: 'caca', foodId: "1312313", calories: 200, grams: 100, protein: 100, sugar: 100, fat: 100 },
+                { name: 'Leche', foodId: "1312313", calories: 200, grams: 100, protein: 100, sugar: 100, fat: 100 },
+                { name: 'caca', foodId: "1312313", calories: 200, grams: 100, protein: 100, sugar: 100, fat: 100 },
+                { name: 'caca', foodId: "1312313", calories: 200, grams: 100, protein: 100, sugar: 100, fat: 100 },
               ],
-              dinner:[],
-              snack:[],
-              lunch:[]
+              dinner: [],
+              snack: [],
+              lunch: []
             },
             {
               breakfast: [
-                { name: 'Leche', foodId:"1312313",  calories: 200 ,  grams:100, protein:100, sugar:100, fat:100},
-                { name: 'Leche', foodId:"1312313",  calories: 200 ,  grams:100, protein:100, sugar:100, fat:100},
+                { name: 'Leche', foodId: "1312313", calories: 200, grams: 100, protein: 100, sugar: 100, fat: 100 },
+                { name: 'Leche', foodId: "1312313", calories: 200, grams: 100, protein: 100, sugar: 100, fat: 100 },
               ],
-              dinner:[],
-              snack:[],
-              lunch:[]
+              dinner: [],
+              snack: [],
+              lunch: []
             }
           ]
         }
       ],
-      saved: false, 
+      saved: false,
       isPublic: true,
     },
     {
@@ -52,29 +55,50 @@ export class PlanService {
           days: [
             {
               breakfast: [
-                { name: 'Leche', foodId:"1312313",  calories: 200 ,  grams:100, protein:100, sugar:100, fat:100},
-                { name: 'Leche', foodId:"1312313",  calories: 200 ,  grams:100, protein:100, sugar:100, fat:100},
+                { name: 'Leche', foodId: "1312313", calories: 200, grams: 100, protein: 100, sugar: 100, fat: 100 },
+                { name: 'Leche', foodId: "1312313", calories: 200, grams: 100, protein: 100, sugar: 100, fat: 100 },
               ],
-              dinner:[],
-              snack:[],
-              lunch:[]
+              dinner: [],
+              snack: [],
+              lunch: []
             },
             {
               breakfast: [
-                { name: 'Leche', foodId:"1312313",  calories: 200 ,  grams:100, protein:100, sugar:100, fat:100},
-                { name: 'Leche', foodId:"1312313",  calories: 200 ,  grams:100, protein:100, sugar:100, fat:100},
+                { name: 'Leche', foodId: "1312313", calories: 200, grams: 100, protein: 100, sugar: 100, fat: 100 },
+                { name: 'Leche', foodId: "1312313", calories: 200, grams: 100, protein: 100, sugar: 100, fat: 100 },
               ],
-              dinner:[],
-              snack:[],
-              lunch:[]
+              dinner: [],
+              snack: [],
+              lunch: []
+            }
+          ]
+        },
+        {
+          days: [
+            {
+              breakfast: [
+                { name: 'Leche', foodId: "1312313", calories: 200, grams: 100, protein: 100, sugar: 100, fat: 100 },
+                { name: 'Leche', foodId: "1312313", calories: 200, grams: 100, protein: 100, sugar: 100, fat: 100 },
+              ],
+              dinner: [],
+              snack: [],
+              lunch: []
+            },
+            {
+              breakfast: [
+                { name: 'Leche', foodId: "1312313", calories: 200, grams: 100, protein: 100, sugar: 100, fat: 100 },
+                { name: 'Leche', foodId: "1312313", calories: 200, grams: 100, protein: 100, sugar: 100, fat: 100 },
+              ],
+              dinner: [],
+              snack: [],
+              lunch: []
             }
           ]
         }
       ],
-      saved: false, 
+      saved: false,
       isPublic: true,
     }
-
   ];
 
   constructor() {}
@@ -84,21 +108,54 @@ export class PlanService {
   }
 
   getPlan(id: string): Observable<Plan | undefined> {
-    const plan = this.plans.find(p => p.id === id);
+    const plan = this.empty_plans.find(p => p.id === id);
+    console.log('Obteniendo plan con id:', id, 'Plan encontrado:', plan);
     return of(plan);
   }
+  
+  
 
   addPlan(plan: Plan): void {
-    console.log("Adding plan:");
-  // Establecer la propiedad saved del plan como true
+    console.log("Adding plan:", plan);
     plan.saved = true;
-  // Agregar el plan al arreglo de planes
     this.empty_plans.push(plan);
+    console.log("Current plans:", this.empty_plans);
+  }
+  
+  
+
+  deleteUserPlan(id: string): Observable<void> {
+    const planIndex = this.empty_plans.findIndex(plan => plan.id === id);
+    if (planIndex !== -1) {
+      this.empty_plans.splice(planIndex, 1);
+      return of(undefined);
+    } else {
+      return throwError(() => new Error('Plan not found'));
+    }
   }
 
-  
   explorePlans(): Observable<Plan[]> {
-    const unSavedPlans = this.plans.filter(plan => !plan.saved);
-    return of(unSavedPlans);
-  } 
+    if (this.explored_plans.length === 0) {
+      this.explored_plans = this.plans.filter(plan => !plan.saved);
+    }
+    return of(this.explored_plans);
+  }
+
+  isPlanSaved(id: string): boolean {
+    return this.empty_plans.some(plan => plan.id === id);
+  }
+
+  updatePlan(updatedPlan: Plan): Observable<void> {
+    const index = this.empty_plans.findIndex(p => p.id === updatedPlan.id);
+    if (index !== -1) {
+      this.empty_plans[index] = updatedPlan;
+      return of(undefined);
+    } else {
+      return throwError(() => new Error('Plan not found'));
+    }
+  }
+
+  getExamplePlan(category: string): Plan | undefined {
+    return this.plans.find(plan => plan.category === category);
+  }
 }

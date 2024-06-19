@@ -1,25 +1,99 @@
-<div class="plan-container">
+<!-- <div class="plan-container">
   <div *ngIf="plan" class="plan-details">
     <h1 class="plan-name">{{ plan.name }}</h1>
     <p class="plan-description">{{ plan.description }}</p>
     <p class="plan-category">Categoría: {{ plan.category }}</p>
-    <ng-container *ngIf="this.plan.saved">
-      <button>delete</button>
+
+    <ng-container *ngIf="plan.saved">
+      <button class="delete-button">Eliminar</button>
     </ng-container>
     
-    
-    <div *ngFor="let week of plan.weeks; let weekIndex = index" class="week">
-      <h2>Semana {{ weekIndex + 1 }}</h2>
-      <div *ngFor="let day of week.days; let dayIndex = index" class="day">
-        <h3>Día {{ dayIndex + 1 }}</h3>
-        <ul class="meals-list">
-          <li *ngFor="let meal of day.breakfast" class="meal">
-            <strong>{{ meal.name }}</strong>: {{ meal.protein }} - {{ meal.calories }} calorías
-          </li>
-        </ul>
+    <div class="week-day-selector">
+      <div class="week-selector">
+        <label for="week">Semana</label>
+        <select id="week" (change)="onWeekChange($event)">
+          <option value="" disabled selected>Seleccione una semana</option>
+          <option *ngFor="let week of plan.weeks; let weekIndex = index" [value]="weekIndex">
+            Semana {{ weekIndex + 1 }}
+          </option>
+        </select>
       </div>
+
+      <div class="day-selector">
+        <label for="day">Día</label>
+        <select id="day" [disabled]="!selectedWeek" (change)="onDayChange($event)">
+          <option value="" disabled selected>Seleccione un día</option>
+          <option *ngFor="let day of selectedWeek?.days; let dayIndex = index" [value]="dayIndex">
+            Día {{ dayIndex + 1 }}
+          </option>
+        </select>
+      </div>
+    </div>
+    
+    <div *ngIf="selectedWeek && selectedDayIndex !== null" class="meals-container">
+      <app-meal-detail mealType="Desayuno" [meal]="selectedWeek.days[selectedDayIndex].breakfast"></app-meal-detail>
+      <app-meal-detail mealType="Almuerzo" [meal]="selectedWeek.days[selectedDayIndex].lunch"></app-meal-detail>
+      <app-meal-detail mealType="Merienda" [meal]="selectedWeek.days[selectedDayIndex].snack"></app-meal-detail>
+      <app-meal-detail mealType="Cena" [meal]="selectedWeek.days[selectedDayIndex].dinner"></app-meal-detail>
+    </div>
+  </div>
+
+  <button (click)="goToSavedPlans()" class="back-button">Volver a Mis Planes Guardados</button>
+</div> -->
+
+<div class="plan-container">
+  <div *ngIf="plan" class="plan-details">
+    <h1 class="plan-name" *ngIf="!isEditing">{{ plan.name }}</h1>
+    <input *ngIf="isEditing" [(ngModel)]="plan.name" class="plan-name-edit"/>
+
+    <p class="plan-description" *ngIf="!isEditing">{{ plan.description }}</p>
+    <textarea *ngIf="isEditing" [(ngModel)]="plan.description" class="plan-description-edit"></textarea>
+
+    <p class="plan-category" *ngIf="!isEditing">Categoría: {{ plan.category }}</p>
+    <input *ngIf="isEditing" [(ngModel)]="plan.category" class="plan-category-edit"/>
+
+    <ng-container *ngIf="plan.saved">
+      <button class="delete-button" (click)="deletePlan()">Eliminar</button>
+    </ng-container>
+
+    <div class="week-day-selector" *ngIf="!isEditing">
+      <div class="week-selector">
+        <label for="week">Semana</label>
+        <select id="week" (change)="onWeekChange($event)">
+          <option value="" disabled selected>Seleccione una semana</option>
+          <option *ngFor="let week of plan.weeks; let weekIndex = index" [value]="weekIndex">
+            Semana {{ weekIndex + 1 }}
+          </option>
+        </select>
+      </div>
+
+      <div class="day-selector">
+        <label for="day">Día</label>
+        <select id="day" [disabled]="!selectedWeek" (change)="onDayChange($event)">
+          <option value="" disabled selected>Seleccione un día</option>
+          <option *ngFor="let day of selectedWeek?.days; let dayIndex = index" [value]="dayIndex">
+            Día {{ dayIndex + 1 }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div *ngIf="selectedWeek && selectedDayIndex !== null" class="meals-container">
+      <app-meal-detail mealType="Desayuno" [meal]="selectedWeek.days[selectedDayIndex].breakfast" [editable]="plan.saved" [isEditing]="isEditing"></app-meal-detail>
+      <app-meal-detail mealType="Almuerzo" [meal]="selectedWeek.days[selectedDayIndex].lunch" [editable]="plan.saved" [isEditing]="isEditing"></app-meal-detail>
+      <app-meal-detail mealType="Merienda" [meal]="selectedWeek.days[selectedDayIndex].snack" [editable]="plan.saved" [isEditing]="isEditing"></app-meal-detail>
+      <app-meal-detail mealType="Cena" [meal]="selectedWeek.days[selectedDayIndex].dinner" [editable]="plan.saved" [isEditing]="isEditing"></app-meal-detail>
+    </div>
+
+    <div *ngIf="!isEditing && plan.saved">
+      <button (click)="toggleEdit()" class="edit-button">Editar Plan</button>
+    </div>
+    <div *ngIf="isEditing">
+      <button (click)="savePlan()" class="save-button">Guardar</button>
+      <button (click)="cancelEdit()" class="cancel-button">Cancelar</button>
     </div>
   </div>
 
   <button (click)="goToSavedPlans()" class="back-button">Volver a Mis Planes Guardados</button>
 </div>
+

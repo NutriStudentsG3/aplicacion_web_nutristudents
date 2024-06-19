@@ -1,0 +1,23 @@
+/* meal-detail.component.css */
+.meal-details {
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .meal-details .header {
+    background-color: #f0f0f0;
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .meal-details .content {
+    padding: 10px;
+    display: none;
+  }
+  
+  .meal-details.open .content {
+    display: block;
+  }
+  
