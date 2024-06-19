@@ -1,9 +1,10 @@
 export interface FoodItem {
-    id: string,
+    id: number,
     name: string,
     calories : number,
     carbs: number,
     fat: number,
     protein: number,
+    image: string
 
 }

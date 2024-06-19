@@ -1,6 +1,7 @@
 import { Component ,HostListener, ElementRef} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FoodService } from '../../../plans/services/food.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -10,19 +11,15 @@ import { Router } from '@angular/router';
 export class SearchBarComponent {
   searchControl = new FormControl('');
   showDropdown = false;
-  items: any[] = [
-    { id: 1, name: 'Apple' },
-    { id: 2, name: 'Banana' },
-    { id: 3, name: 'Cherry' },
-    { id: 4, name: 'Date' },
-    { id: 5, name: 'Elderberry' }   
-  ];
+  items: any[] 
   filteredItems: any[] = [];
 
-  constructor(private hostElement: ElementRef) {
+  constructor(private hostElement: ElementRef, private foodService: FoodService) {
     this.searchControl.valueChanges.subscribe(value => {
       this.filteredItems = this.filterItems(value);
     });
+
+    this.items = foodService.getAllFoods()
   }
 
   filterItems(searchTerm: string | null) {
