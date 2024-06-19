@@ -1,21 +1,25 @@
-<header class="header-container">
-    <a class="header-title" routerLink="/home">SnackTrack</a>
-    <app-search-bar/>
-    <div class="header-nav">
-        <a class="header-nav-item" routerLink="/home">Home</a>
-        <a class="header-nav-item" routerLink="/recipes">Recipes</a>
-        <a class="header-nav-item" routerLink="/community">Community</a>
-    </div>
-    <ng-container *ngIf="user; else loggedOut">
-        <a routerLink="/profile">
-            <img  class="header-image" src="/images/profile-user.webp" alt="">
-        </a>
-    </ng-container>
-    <ng-template #loggedOut >
-        <a routerLink="/login">Login</a>
-    </ng-template>
+
+<body class="layout-body">
+    <header class="header-container">
+        <a class="header-title" routerLink="/home">SnackTrack</a>
+        <app-search-bar/>
+        <div class="header-nav">
+            <a class="header-nav-item" routerLink="/home">Home</a>
+            <a class="header-nav-item" routerLink="/recipes">Recipes</a>
+            <a class="header-nav-item" routerLink="/community">Community</a>
+        </div>
+        <ng-container *ngIf="user; else loggedOut">
+            <a routerLink="/profile">
+                <img  class="header-image" src="/images/profile-user.webp" alt="">
+            </a>
+        </ng-container>
+        <ng-template #loggedOut >
+            <a routerLink="/login">Login</a>
+        </ng-template>
+        
+    </header>
+
     
-</header>
+    <router-outlet></router-outlet>
 
-
-<router-outlet></router-outlet>
+</body>
