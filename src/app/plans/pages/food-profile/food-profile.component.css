@@ -1,0 +1,91 @@
+.food-section{
+
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: 100% ;
+}
+
+.min-header{
+    width: 100%;
+}
+.back-button{
+    background-color: white;
+    border: 0;
+    font-size: xx-large;
+    padding-left: 2rem;
+}
+.food-profile-content{
+    padding: 0 2rem;
+    display: grid;
+    height: 100%;
+    grid-template-columns: 30% 70%;
+}
+
+.food-image{
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+    align-self: center;
+}
+
+.food-info{
+    background: #B4B4B4;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.food-title{
+    font-size: xx-large;
+    text-align: center;
+    width: 100%;
+    background-color: white;
+    padding:  1rem 0 ;
+    
+}
+
+.info-food-item{
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+    width: 100%;
+    background-color: white;
+    justify-content: space-around;
+}
+.number-detail{
+    color: #88BB49;
+}
+
+.food-footer{
+    flex-grow: 1;
+    background-color: white;
+}
+
+.stats-container{
+    display: flex;
+    background-color: white;
+    padding: 1rem;
+    
+}
+.stats-content{
+    display: grid;
+    grid-template-columns: 40% auto;
+    background: #B4B4B4;
+    gap: 1px;
+    width: 100%;
+}
+.calories-group{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}

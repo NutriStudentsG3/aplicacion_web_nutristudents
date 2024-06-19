@@ -8,6 +8,7 @@ import { AccountModule } from './account/account.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthModule } from './auth/auth.module';
+import { PlansModule } from './plans/plans.module';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { AuthModule } from './auth/auth.module';
     SharedModule,
     AccountModule,
     BrowserAnimationsModule,
-    AuthModule
+    AuthModule,
+    PlansModule,
     ],
   providers: [
     provideAnimationsAsync()
