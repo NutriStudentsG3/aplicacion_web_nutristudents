@@ -3,6 +3,8 @@
     justify-content: space-between;
     padding:  0.5rem 1rem;
     align-items: center;
+    height: 60px;
+
 }
 
 .header-title {
@@ -21,6 +23,13 @@
     height: auto;
     width: 50px;
     padding: 0.25rem;
+}
+
+.layout-body{
+    display: grid;
+    grid-template-rows: 76px 0 auto;
+    height: 100vh;
+    max-height: 100vh;
 }
     
 

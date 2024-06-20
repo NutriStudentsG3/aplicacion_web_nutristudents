@@ -1,0 +1,129 @@
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f0f0f0;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.left-side {
+    flex: 1;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.right-side {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(#53b32f, #88BB49);
+    padding: 20px;
+
+}
+
+.logo {
+    width: 30%;
+    height: auto;
+}
+
+.login-box {
+    max-width: 400px;
+    background: #ffffff;
+    padding: 75px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border-radius: 10px;
+}
+
+.login-box h1 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: 900;
+    color: #4caf50;
+}
+.login-box h3 {
+    margin-bottom: 20px;
+    font-size: 15px;
+    color: #666666;
+    font-weight: 300;
+    font-family: 'Inter', sans-serif; /* Establecer la fuente Inter */
+}
+
+
+.option {
+    background: #eaf7d9;
+    border-radius: 25px;
+    padding: 20px;
+    text-align: center;
+    border: 2px solid #0C7429;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    margin-bottom: 20px; 
+}
+
+.content {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-column-gap: 20px;
+    align-items: center;
+}
+
+.text {
+    text-align: left;
+}
+
+.option h2 {
+    color: #0C7429;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.option p {
+    color: #0C7429;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.option img {
+    width: 60px;
+    height: auto;
+}
+.option:hover {
+    background: #d9f2c2;
+    transform: scale(1.05);
+}
+
+.submit-btn {
+    padding: 10px;
+    font-size: 16px;
+    background: #4caf50;
+    color: #ffffff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif; /* Establecer la fuente Inter */
+    font-weight: 300; /* Establecer el peso de la fuente */
+    text-align: center; /* Centrar el texto */
+    width: 400px;/*ancho del cuadro*/
+
+}
+
+.submit-btn:hover {
+    background: #45a049;
+}
+.option {
+    cursor: pointer;
+  }
+  
+  .option.selected {
+    border: 2px solid #0C7429; 
+    background-color: #88BB49; 
+  }

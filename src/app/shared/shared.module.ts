@@ -5,10 +5,13 @@ import { RouterModule } from '@angular/router';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { PlansModule } from '../plans/plans.module';
+import { NotImplementedComponent } from './components/not-implemented/not-implemented.component';
+
 
 
 @NgModule({
   declarations: [
+    NotImplementedComponent,
     SearchBarComponent,
     MainLayoutComponent,
     
@@ -20,6 +23,7 @@ import { PlansModule } from '../plans/plans.module';
     PlansModule
   ],
   exports: [
+    NotImplementedComponent,
     SearchBarComponent,
     MainLayoutComponent,
     

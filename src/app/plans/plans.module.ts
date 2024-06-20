@@ -13,6 +13,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MealDetailComponent } from './components/meal-detail/meal-detail.component';
+import { FoodProfileComponent } from './pages/food-profile/food-profile.component';
+import { DonutChartComponent } from './components/donut-chart/donut-chart.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { MealDetailComponent } from './components/meal-detail/meal-detail.compon
     ExplorePlansComponent,
     CreatePlanComponent,
     PlanDetailComponent,
-    MealDetailComponent 
+    MealDetailComponent,
+    FoodProfileComponent,
+    DonutChartComponent,
   ],
   imports: [
     CommonModule,
@@ -35,6 +39,7 @@ import { MealDetailComponent } from './components/meal-detail/meal-detail.compon
   ],
   exports: [
     PlanListComponent, 
+    FoodProfileComponent,
   ]
 })
 export class PlansModule { }
