@@ -9,6 +9,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthModule } from './auth/auth.module';
 import { CommunityModule } from './community/community.module';
+import { PlansModule } from './plans/plans.module';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { CommunityModule } from './community/community.module';
     BrowserAnimationsModule,
     AuthModule,
     CommunityModule,
-    FormsModule
+    FormsModule,
+    PlansModule,
     ],
   providers: [
     provideAnimationsAsync()
