@@ -1,0 +1,9 @@
+<div class="add-food-container">
+    <input class="foodInput" [formControl]="searchControl" placeholder="Search..." >
+    <div   class="searchResponse" *ngIf="filteredItems.length > 0">
+        <a style="padding: 1rem; width: 100%;" class="searchItem" *ngFor="let item of filteredItems" [routerLink]="['/plans/addFood/plan',  this.planId, 'day', this.day, 'meal', this.meal, 'food' , item.id]">
+            {{ item.name}}
+        </a>
+    </div>
+</div>
+    

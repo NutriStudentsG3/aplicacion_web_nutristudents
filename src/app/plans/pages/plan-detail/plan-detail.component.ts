@@ -10,9 +10,8 @@ import { Plan, Week, Day } from '../../models/plan.model';
 })
 export class PlanDetailComponent implements OnInit {
   plan: Plan | undefined;
-  selectedWeek: Week | undefined;
-  selectedDayIndex: number | null = null;
-  isEditing: boolean = false;
+  selectedWeek: number | undefined = undefined;
+  selectedDayIndex: number | undefined = undefined;
   originalPlan: Plan | undefined;
 
   constructor(
@@ -33,7 +32,7 @@ export class PlanDetailComponent implements OnInit {
           this.plan = { ...plan };
           this.originalPlan = JSON.parse(JSON.stringify(plan));  // Guardar una copia profunda del plan
           if (this.plan.weeks.length > 0) {
-            this.selectedWeek = this.plan.weeks[0];
+            this.selectedWeek = 0;
             this.selectedDayIndex = 0;
           }
         }
@@ -41,47 +40,31 @@ export class PlanDetailComponent implements OnInit {
     }
   }
 
-  onWeekChange(event: Event): void {
-    const weekIndex = (event.target as HTMLSelectElement).value;
-    if (this.plan) {
-      this.selectedWeek = this.plan.weeks[+weekIndex];
-      this.selectedDayIndex = 0;
-    }
-  }
-
-  onDayChange(event: Event): void {
-    this.selectedDayIndex = +(event.target as HTMLSelectElement).value;
-  }
 
   goToSavedPlans(): void {
-    this.router.navigate(['/plans']);
+    console.log(this.selectedWeek, this.selectedDayIndex);
+    //this.router.navigate(['/plans']);
   }
 
-  toggleEdit(): void {
-    this.isEditing = !this.isEditing;
-  }
 
   savePlan(): void {
     if (this.plan) {
       this.planService.updatePlan(this.plan).subscribe(() => {
-        this.isEditing = false;
         this.originalPlan = JSON.parse(JSON.stringify(this.plan));  // Actualizar la copia original con los cambios guardados
       });
     }
   }
 
-  cancelEdit(): void {
-    if (this.originalPlan) {
-      this.plan = JSON.parse(JSON.stringify(this.originalPlan));  // Restaurar la copia original
-    }
-    this.isEditing = false;
-  }
-
+  
   deletePlan(): void {
     if (this.plan) {
         this.planService.deleteUserPlan(this.plan.id).subscribe(() => {
         this.router.navigate(['/plans']);
       });
     }
+  }
+
+  getRange(count: number): number[] {
+    return Array(count).fill(0).map((x, i) => i);
   }
 }

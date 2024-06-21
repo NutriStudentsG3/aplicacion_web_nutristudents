@@ -13,6 +13,7 @@ import { ResultComponent } from './auth/result/result.component';
 import { FreeTrialComponent } from './account/free-trial/free-trial.component';
 import { SubscriptionFormComponent } from './account/subscription-form/subscription-form.component';
 import { FoodProfileComponent } from './plans/pages/food-profile/food-profile.component';
+import { PlanLayoutComponent } from './plans/layouts/plan-layout/plan-layout.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -31,14 +32,23 @@ const routes: Routes = [
       { path: 'home', component: NotImplementedComponent},
       { path: 'profile', component: ProfilePageComponent},
       { path: 'profile/:id', component: NotImplementedComponent},
-      { path: 'food/:id', component: FoodProfileComponent },
-      { path: 'free-trial', component: FreeTrialComponent },
-      { path: 'subscription-form', component: SubscriptionFormComponent},
-      { path: 'plans', loadChildren: () => import('./plans/plans.module').then(m => m.PlansModule) },
+      {
+        path: '',
+        component: PlanLayoutComponent,
+        children:[
+          { path: 'food/:id', component: FoodProfileComponent },
+          { path: 'free-trial', component: FreeTrialComponent },
+          { path: 'subscription-form', component: SubscriptionFormComponent},
+          { path: 'plans', loadChildren: () => import('./plans/plans.module').then(m => m.PlansModule) },
+        ]
+      }
     ]
   },
 
-  { path: '**', redirectTo: '/home' } 
+  { 
+    path: '**', 
+    redirectTo: '/home' 
+  } 
 
 ];
 

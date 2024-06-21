@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PlanFood } from '../../models/plan.model';
 import { PlanService } from '../../services/plan.service';
+import {  Router } from '@angular/router';
 
 @Component({
   selector: 'app-meal-detail',
@@ -11,12 +12,13 @@ export class MealDetailComponent implements OnInit {
   @Input() meal: PlanFood[] | undefined;
   @Input() mealType: string = '';
   @Input() editable: boolean = false;
-  @Input() isEditing: boolean = false;
+  @Input() weekIndex: number | undefined;
+  @Input() dayIndex: number | undefined;
+  @Input() planId: string | undefined;
   isOpen: boolean = false;
   originalMeal: PlanFood[] | undefined;
-  newMeal: PlanFood = this.createEmptyMeal();
 
-  constructor(private planService: PlanService) {}
+  constructor(private planService: PlanService, private router: Router) {}
 
   ngOnInit(): void {
     if (this.meal) {
@@ -24,49 +26,11 @@ export class MealDetailComponent implements OnInit {
     }
   }
 
-  
-
   toggleAccordion(): void {
     this.isOpen = !this.isOpen;
   }
-
-  toggleEdit(): void {
-    this.isEditing = !this.isEditing;
+  goToAdd(){
+    this.router.navigate(['/plans/addFood/plan',  this.planId!, 'day', (this.weekIndex!) * 7 + ( this.dayIndex!), 'meal', this.mealType]);
   }
-
-  saveMeal(): void {
-    if (this.meal) {
-      this.originalMeal = JSON.parse(JSON.stringify(this.meal));
-      this.isEditing = false;
-    }
-  }
-
-  cancelEdit(): void {
-    if (this.originalMeal) {
-      this.meal = JSON.parse(JSON.stringify(this.originalMeal));
-    }
-    this.isEditing = false;
-  }
-
-  createEmptyMeal(): PlanFood {
-    return {
-      name: '',
-      foodId: '',
-      calories: 0,
-      grams: 0,
-      protein: 0,
-      sugar: 0,
-      fat: 0
-    };
-  }
-
-  addNewMeal(): void {
-    if (this.meal) {
-      this.meal.push(this.newMeal);
-      this.newMeal = this.createEmptyMeal(); // Reset newMeal for the next addition
-    }
-  }
-
-  
 
 }

@@ -13,12 +13,15 @@ export interface Week {
   days: Day[] ,
 }
 
-export interface Day {
-  breakfast : PlanFood[],
-  lunch : PlanFood[],
-  snack: PlanFood[],
-  dinner: PlanFood[],
+
+class CDay {
+  breakfast : PlanFood[] = []
+  lunch : PlanFood[] = []
+  snack: PlanFood[] = []
+  dinner: PlanFood[] = []
 }
+
+export interface Day extends CDay {}
 
 export interface PlanFood {
   foodId : string,

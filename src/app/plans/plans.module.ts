@@ -15,6 +15,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MealDetailComponent } from './components/meal-detail/meal-detail.component';
 import { FoodProfileComponent } from './pages/food-profile/food-profile.component';
 import { DonutChartComponent } from './components/donut-chart/donut-chart.component';
+import { AddFoodComponent } from './pages/add-food/add-food.component';
+import { PlanLayoutComponent } from './layouts/plan-layout/plan-layout.component';
+import { AddFoodProfileComponent } from './pages/add-food-profile/add-food-profile.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,9 @@ import { DonutChartComponent } from './components/donut-chart/donut-chart.compon
     MealDetailComponent,
     FoodProfileComponent,
     DonutChartComponent,
+    AddFoodComponent,
+    PlanLayoutComponent,
+    AddFoodProfileComponent,
   ],
   imports: [
     CommonModule,

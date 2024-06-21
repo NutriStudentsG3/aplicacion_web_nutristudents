@@ -1,0 +1,18 @@
+.layout-section{
+
+    display: grid;
+    grid-template-rows: 41px 0 auto;
+    height: 100%;
+}
+
+.min-header{
+    width: 100%;
+}
+
+.back-button{
+    background-color: white;
+    border: 0;
+    font-size: xx-large;
+    padding-left: 2rem;
+    cursor: pointer;
+}

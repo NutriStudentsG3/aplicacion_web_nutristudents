@@ -63,4 +63,13 @@ export class FoodService {
   getAllFoods(){
     return this.foodList
   }
+
+  filterItems(searchTerm: string | null) {
+    if (!searchTerm) {
+      return [];
+    }
+    return this.foodList.filter(item =>
+      item.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }
 }

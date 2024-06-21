@@ -6,7 +6,7 @@ import { Plan } from '../models/plan.model';
   providedIn: 'root'
 })
 export class PlanService {
-  private empty_plans: Plan[] = [];
+  private my_plans: string[] = [];
   private explored_plans: Plan[] = [];
   private plans: Plan[] = [
     {
@@ -20,10 +20,10 @@ export class PlanService {
           days: [
             {
               breakfast: [
-                { name: 'caca', foodId: "1312313", calories: 200, grams: 100, protein: 100, sugar: 100, fat: 100 },
+                { name: 'arroz', foodId: "1312313", calories: 200, grams: 100, protein: 100, sugar: 100, fat: 100 },
                 { name: 'Leche', foodId: "1312313", calories: 200, grams: 100, protein: 100, sugar: 100, fat: 100 },
-                { name: 'caca', foodId: "1312313", calories: 200, grams: 100, protein: 100, sugar: 100, fat: 100 },
-                { name: 'caca', foodId: "1312313", calories: 200, grams: 100, protein: 100, sugar: 100, fat: 100 },
+                { name: 'arroz', foodId: "1312313", calories: 200, grams: 100, protein: 100, sugar: 100, fat: 100 },
+                { name: 'te', foodId: "1312313", calories: 200, grams: 100, protein: 100, sugar: 100, fat: 100 },
               ],
               dinner: [],
               snack: [],
@@ -31,8 +31,8 @@ export class PlanService {
             },
             {
               breakfast: [
-                { name: 'Leche', foodId: "1312313", calories: 200, grams: 100, protein: 100, sugar: 100, fat: 100 },
-                { name: 'Leche', foodId: "1312313", calories: 200, grams: 100, protein: 100, sugar: 100, fat: 100 },
+                { name: 'palta', foodId: "1312313", calories: 200, grams: 100, protein: 100, sugar: 100, fat: 100 },
+                { name: 'arroz', foodId: "1312313", calories: 200, grams: 100, protein: 100, sugar: 100, fat: 100 },
               ],
               dinner: [],
               snack: [],
@@ -56,7 +56,7 @@ export class PlanService {
             {
               breakfast: [
                 { name: 'Leche', foodId: "1312313", calories: 200, grams: 100, protein: 100, sugar: 100, fat: 100 },
-                { name: 'Leche', foodId: "1312313", calories: 200, grams: 100, protein: 100, sugar: 100, fat: 100 },
+                { name: 'papa', foodId: "1312313", calories: 200, grams: 100, protein: 100, sugar: 100, fat: 100 },
               ],
               dinner: [],
               snack: [],
@@ -64,8 +64,8 @@ export class PlanService {
             },
             {
               breakfast: [
-                { name: 'Leche', foodId: "1312313", calories: 200, grams: 100, protein: 100, sugar: 100, fat: 100 },
-                { name: 'Leche', foodId: "1312313", calories: 200, grams: 100, protein: 100, sugar: 100, fat: 100 },
+                { name: 'empanad', foodId: "1312313", calories: 200, grams: 100, protein: 100, sugar: 100, fat: 100 },
+                { name: 'pastel', foodId: "1312313", calories: 200, grams: 100, protein: 100, sugar: 100, fat: 100 },
               ],
               dinner: [],
               snack: [],
@@ -103,13 +103,22 @@ export class PlanService {
 
   constructor() {}
 
-  getPlans(): Observable<Plan[]> {
-    return of(this.empty_plans);
+  getPlans(): Observable<Plan[]>{
+    let myPlans: Plan[]= []
+    this.my_plans.forEach(plan => {
+      let p = this.plans.find(p => p.id === plan)
+      if(p) myPlans.push(p)
+    })
+    return of(myPlans);
   }
 
   getPlan(id: string): Observable<Plan | undefined> {
-    const plan = this.empty_plans.find(p => p.id === id);
+    let plan = this.plans.find(p => p.id === id);
+    if(!plan) return of(undefined)
     console.log('Obteniendo plan con id:', id, 'Plan encontrado:', plan);
+    if (this.my_plans.find(p => p === id)){
+      plan = {...plan, saved: true} 
+    }
     return of(plan);
   }
   
@@ -118,17 +127,18 @@ export class PlanService {
   addPlan(plan: Plan): void {
     console.log("Adding plan:", plan);
     plan.saved = true;
-    this.empty_plans.push(plan);
-    console.log("Current plans:", this.empty_plans);
+    this.plans.push(plan);
+    this.my_plans.push(plan.id);
+    console.log("Current plans:", this.my_plans);
   }
   
   
 
-  deleteUserPlan(id: string): Observable<void> {
-    const planIndex = this.empty_plans.findIndex(plan => plan.id === id);
+  deleteUserPlan(id: string): Observable<boolean> {
+    const planIndex = this.my_plans.findIndex(plan => plan === id);
     if (planIndex !== -1) {
-      this.empty_plans.splice(planIndex, 1);
-      return of(undefined);
+      this.my_plans.splice(planIndex, 1);
+      return of(true);
     } else {
       return throwError(() => new Error('Plan not found'));
     }
@@ -142,14 +152,14 @@ export class PlanService {
   }
 
   isPlanSaved(id: string): boolean {
-    return this.empty_plans.some(plan => plan.id === id);
+    return this.my_plans.some(plan => plan === id);
   }
 
-  updatePlan(updatedPlan: Plan): Observable<void> {
-    const index = this.empty_plans.findIndex(p => p.id === updatedPlan.id);
-    if (index !== -1) {
-      this.empty_plans[index] = updatedPlan;
-      return of(undefined);
+  updatePlan(updatedPlan: Plan): Observable<boolean> {
+    const index = this.plans.findIndex(p => p.id === updatedPlan.id);
+    if (index !== -1 && this.my_plans.includes(updatedPlan.id)) {
+      this.plans[index] = updatedPlan;
+      return of(true);
     } else {
       return throwError(() => new Error('Plan not found'));
     }
