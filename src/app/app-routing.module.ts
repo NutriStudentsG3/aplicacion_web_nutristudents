@@ -16,6 +16,7 @@ import { MeetuserComponent } from './auth/meetuser/meetuser.component';
 import { ResultComponent } from './auth/result/result.component';
 import { FreeTrialComponent } from './account/free-trial/free-trial.component';
 import { SubscriptionFormComponent } from './account/subscription-form/subscription-form.component';
+import { CommunityPageComponent } from './community/community-page/community-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -35,6 +36,7 @@ const routes: Routes = [
       
       { path: 'home', component: NotImplementedComponent},
       { path: 'profile', component: ProfilePageComponent},
+      { path: 'community', component: CommunityPageComponent},
       { path: 'profile/:id', component: NotImplementedComponent},
       { path: 'food/:id', component: NotImplementedComponent },
       { path: 'free-trial', component: FreeTrialComponent },
