@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { PlanFood } from '../../models/plan.model';
 import { PlanService } from '../../services/plan.service';
 import {  Router } from '@angular/router';
+import { FoodItem } from '../../models/foodItem.model';
+import { PlanFood } from '../../models/plan.model';
 
 @Component({
   selector: 'app-meal-detail',

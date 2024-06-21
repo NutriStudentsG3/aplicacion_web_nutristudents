@@ -1,7 +1,4 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="back_arrow" (click)="goToSavedPlans()">
-    <img src="public/images/flecha-izquierda.png" alt="Volver">
-  </div>
   <label for="nombre">Nombre: </label>
   <input type="text" id="nombre" formControlName="nombre" placeholder="Coloca el nombre de plan" required minlength="1">
 

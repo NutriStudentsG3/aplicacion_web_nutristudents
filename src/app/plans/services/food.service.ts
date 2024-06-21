@@ -8,7 +8,7 @@ export class FoodService {
 
   foodList: FoodItem[] = [
     {
-      id: 1,
+      foodId: '1',
       name: 'Leche Gloria',
       calories: 209,
       carbs: 20,
@@ -17,7 +17,7 @@ export class FoodService {
       image: "https://corporacionliderperu.com/48308-large_default/gloria-leche-tarro-light-roja-gde-x-390-gr.jpg"
     },
     {
-      id: 2,
+      foodId: '2',
       name: 'Pan Bimbo',
       calories: 270,
       carbs: 50,
@@ -26,7 +26,7 @@ export class FoodService {
       image: "https://metroio.vtexassets.com/arquivos/ids/251368/141803-01-69799.jpg?v=638173958286230000g"
     },
     {
-      id: 3,
+      foodId: '3',
       name: 'Yogurt Danone',
       calories: 150,
       carbs: 25,
@@ -35,7 +35,7 @@ export class FoodService {
       image: "https://i5.walmartimages.com.mx/gr/images/product-images/img_large/00750103239851L.jpg"
     },
     {
-      id: 4,
+      foodId: '4',
       name: 'Queso Andino',
       calories: 300,
       carbs: 1,
@@ -44,7 +44,7 @@ export class FoodService {
       image: "https://wongfood.vtexassets.com/arquivos/ids/692668-800-auto?v=638446737725070000&width=800&height=auto&aspect=true"
     },
     {
-      id:5,
+      foodId:'5',
       name: 'Manzana Roja',
       calories: 95,
       carbs: 25,
@@ -56,8 +56,8 @@ export class FoodService {
 
   constructor() { }
 
-  getFoodById(id: number){
-    return this.foodList.find(item => item.id === id);
+  getFoodById(id: string){
+    return this.foodList.find(item => item.foodId === id);
   }
 
   getAllFoods(){

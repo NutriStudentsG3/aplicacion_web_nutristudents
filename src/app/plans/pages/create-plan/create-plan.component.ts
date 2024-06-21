@@ -38,6 +38,7 @@ export class CreatePlanComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(): void {
+    console.log('Formulario:', this.form.value);
     if (this.form.valid) {
       const formValue = this.form.value;
       const newPlan: Plan = {
@@ -70,10 +71,10 @@ export class CreatePlanComponent implements OnInit {
         for (let i = 0; i < formValue.semanas; i++) {
           newPlan.weeks.push({
             days: Array(7).fill(null).map(() => ({
-              breakfast: [{ foodId: '', name: '', grams: 0, protein: 0, sugar: 0, fat: 0, calories: 0 }],
-              lunch: [{ foodId: '', name: '', grams: 0, protein: 0, sugar: 0, fat: 0, calories: 0 }],
-              snack: [{ foodId: '', name: '', grams: 0, protein: 0, sugar: 0, fat: 0, calories: 0 }],
-              dinner: [{ foodId: '', name: '', grams: 0, protein: 0, sugar: 0, fat: 0, calories: 0 }]
+              breakfast: [],
+              lunch: [],
+              snack: [],
+              dinner: []
             }))
           });
         }

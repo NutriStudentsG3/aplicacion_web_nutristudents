@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
-import { Plan } from '../models/plan.model';
+import { Plan, PlanFood } from '../models/plan.model';
 
 @Injectable({
   providedIn: 'root'
@@ -167,5 +167,27 @@ export class PlanService {
 
   getExamplePlan(category: string): Plan | undefined {
     return this.plans.find(plan => plan.category === category);
+  }
+
+  addFoodToPlan(planId: string, dayIndex: number, meal: 'breakfast' | 'lunch' | 'dinner' | 'snack', food: any , grams:number): Observable<boolean> {
+    const plan = this.plans.find(p => p.id === planId);
+    if (!plan) {
+      return throwError(() => new Error('Plan not found'));
+    }
+    const day = plan.weeks[Number((dayIndex/7).toFixed(0))].days[dayIndex%7];
+    if (!day) {
+      return throwError(() => new Error('Day not found'));
+    }
+    let cur :PlanFood = {
+      foodId: food.id,
+      name: food.name,
+      calories: food.calories * grams / 100,
+      protein: food.protein * grams / 100,
+      sugar: food.sugar * grams / 100,
+      fat: food.fat * grams / 100,
+      grams: grams,
+    }
+    day[meal].push(cur);
+    return of(true);
   }
 }

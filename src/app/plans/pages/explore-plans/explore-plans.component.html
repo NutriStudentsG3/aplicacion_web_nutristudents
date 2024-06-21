@@ -1,8 +1,5 @@
 <!-- Mostrar solo si hay planes explorados -->
 <div *ngIf="exploredPlans.length > 0" id="exploredPlans">
-    <div class="back_arrow" (click)="goToSavedPlans()">
-      <img src="public/images/flecha-izquierda.png" alt="Volver">
-    </div>
     <h2>Planes Explorados</h2>
     <ul>
       <li *ngFor="let plan of exploredPlans" class="plan_item">
