@@ -1,0 +1,124 @@
+<div class="comunidad">
+  <section id="community">
+    <h2 class="title"> <- Comunidad</h2>
+    <p class="subtitle">¿Qué te gustaría compartir con nuestra comunidad?</p>
+    <div id="container-post">
+      <div id="create-post">
+        <label for="post-content">Crear post</label>
+        <textarea id="post-content" [(ngModel)]="newPostContent" placeholder="Escribe aquí tu post para la comunidad" (input)="adjustTextAreaHeight($event)"></textarea>
+        <div class="file-upload-container">
+          <label for="image-upload" class="file-upload-label">
+            <img src="\images\Picture.png" alt="Icono de imagen">
+            <span>Seleccionar archivo</span>
+          </label>
+          <input type="file" id="image-upload" (change)="onFileSelected($event)" accept="image/*">
+          <button (click)="createPost()">Publicar</button>
+        </div>
+        <div id="image-preview" *ngIf="imagePreviewUrl">
+          <img [src]="imagePreviewUrl" alt="Previsualización de imagen">
+        </div>
+      </div>
+    </div>
+    <div id="posts-container">
+      <!-- Mostrar el post más visto si está activo -->
+      <div class="post" *ngIf="showMostViewedPost && mostViewedPost">
+        <div class="post-header">
+          <p>Publicado por {{ mostViewedPost.username }} {{ mostViewedPost.shortUsername }} el {{ mostViewedPost.timestamp }}</p>
+        </div>
+        <div class="post-content">
+          <p>{{ mostViewedPost.content }}</p>
+          <img *ngIf="mostViewedPost.imageUrl" [src]="mostViewedPost.imageUrl" alt="Imagen del post">
+        </div>
+        <div class="post-footer">
+          <div class="likes" (click)="likePost(mostViewedPost)">
+            <img src="\images\like.png" alt="Like">
+            <span>{{ mostViewedPost.likes }}</span>
+          </div>
+          <div class="comments" (click)="toggleComments(mostViewedPost)">
+            <img src="\images\coment.png" alt="Comentarios">
+            <span>{{ mostViewedPost.comments.length }}</span>
+          </div>
+        </div>
+        <div class="comments-section" *ngIf="mostViewedPost.showComments">
+          <div class="comment" *ngFor="let comment of mostViewedPost.comments">
+            <p>{{ comment.content }}</p>
+            <!-- Mostrar el nombre completo del usuario en el comentario -->
+            <p>{{ comment.username }} {{ comment.shortUsername }} - {{ comment.timestamp }}</p>
+          </div>
+          <div class="comment-form">
+            <textarea [(ngModel)]="mostViewedPost.newComment" placeholder="Añadir un comentario" (input)="adjustTextAreaHeight($event)"></textarea>
+            <button (click)="addComment(mostViewedPost)">Comentar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mostrar todos los posts -->
+      <div class="post" *ngFor="let post of posts">
+        <div class="post-header">
+          <p>{{ post.username }} {{ post.shortUsername }} el {{ post.timestamp }}</p>
+        </div>
+        <div class="post-content">
+          <p>{{ post.content }}</p>
+          <img *ngIf="post.imageUrl" [src]="post.imageUrl" alt="Imagen del post">
+        </div>
+        <div class="post-footer">
+          <div class="likes" (click)="likePost(post)">
+            <img src="\images\like.png" alt="Like">
+            <span>{{ post.likes }}</span>
+          </div>
+          <div class="comments" (click)="toggleComments(post)">
+            <img src="\images\coment.png" alt="Comentarios">
+            <span>{{ post.comments.length }}</span>
+          </div>
+        </div>
+        <div class="comments-section" *ngIf="post.showComments">
+          <div class="comment" *ngFor="let comment of post.comments">
+            <p>{{ comment.username }} {{ comment.shortUsername }} - {{ comment.timestamp }}</p>
+            <p>{{ comment.content }}</p>
+            <!-- Mostrar el nombre completo del usuario en el comentario -->
+        
+          </div>
+          <div class="comment-form">
+            <textarea [(ngModel)]="post.newComment" placeholder="Añadir un comentario" (input)="adjustTextAreaHeight($event)"></textarea>
+            <button (click)="addComment(post)">Comentar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <aside>
+    <div id="community-info">
+      <h2 class="title2">Bienvenido a la comunidad de SnackTrack!</h2>
+      <div id="member-info">
+        <p><span>250</span> Miembros</p>
+        <p><span>15</span> Online</p>
+        <p><span>+100</span> Posts</p>
+      </div>
+      <button (click)="toggleModal()" class="reglas">Reglas de la comunidad</button>
+      <div class="modal" [ngClass]="{'show': isModalVisible}">
+        <div class="modal-content">
+          <span class="close" (click)="toggleModal()">&times;</span>
+          <h2>Reglas de la Comunidad</h2><br>
+          <p>Aquí puedes leer las reglas de la comunidad...</p><br>
+          <p>Se Respetuoso y Amable</p>
+          <p>Comparte solo información verídica</p>
+          <p>No realices diagnósticos médicos sin un profesional</p>
+          <p>Mantén tu confidencialidad y privacidad</p>
+          <p>Evita hacer publicidad y/o promoción</p>
+          <p>Prohibido el contenido inapropiado</p>
+          <p>Evita el comportamiento tóxico y discusiones</p>
+          <p>Usa un lenguaje claro y comprensible</p>
+        </div>
+      </div>
+      <div id="filter-buttons">
+        <label for="posts">Filtrar por:</label>
+        <div class="select-wrapper">
+          <select id="posts">
+            <option value="vistos">Más Vistos</option>
+            <option value="recientes">Más Recientes</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>
