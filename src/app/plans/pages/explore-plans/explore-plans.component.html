@@ -1,0 +1,11 @@
+<!-- Mostrar solo si hay planes explorados -->
+<div *ngIf="exploredPlans.length > 0" id="exploredPlans">
+    <h2>Planes Explorados</h2>
+    <ul>
+      <li *ngFor="let plan of exploredPlans" class="plan_item">
+        <a [routerLink]="['/plans/detail', plan.id]" class="plan_link">{{ plan.name }}</a>
+        <span class="add_to_list" (click)="addPlanToSaved(plan)">Add to my list</span>
+      </li>
+    </ul>
+  </div>
+  

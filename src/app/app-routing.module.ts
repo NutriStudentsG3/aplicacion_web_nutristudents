@@ -14,6 +14,7 @@ import { FreeTrialComponent } from './account/free-trial/free-trial.component';
 import { SubscriptionFormComponent } from './account/subscription-form/subscription-form.component';
 import { CommunityPageComponent } from './community/community-page/community-page.component';
 import { FoodProfileComponent } from './plans/pages/food-profile/food-profile.component';
+import { PlanLayoutComponent } from './plans/layouts/plan-layout/plan-layout.component';
 
 
 const routes: Routes = [
@@ -29,18 +30,28 @@ const routes: Routes = [
     component: MainLayoutComponent,
     //canActivate: [AuthGuard],
     children: [
-      
+
       { path: 'home', component: NotImplementedComponent},
       { path: 'profile', component: ProfilePageComponent},
       { path: 'community', component: CommunityPageComponent},
       { path: 'profile/:id', component: NotImplementedComponent},
-      { path: 'food/:id', component: FoodProfileComponent },
-      { path: 'free-trial', component: FreeTrialComponent },
-      { path: 'subscription-form', component: SubscriptionFormComponent},
+      {
+        path: '',
+        component: PlanLayoutComponent,
+        children:[
+          { path: 'food/:id', component: FoodProfileComponent },
+          { path: 'free-trial', component: FreeTrialComponent },
+          { path: 'subscription-form', component: SubscriptionFormComponent},
+          { path: 'plans', loadChildren: () => import('./plans/plans.module').then(m => m.PlansModule) },
+        ]
+      }
     ]
   },
 
-  { path: '**', redirectTo: '/home' } 
+  { 
+    path: '**', 
+    redirectTo: '/home' 
+  } 
 
 ];
 

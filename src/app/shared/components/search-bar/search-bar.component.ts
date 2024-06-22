@@ -33,7 +33,6 @@ export class SearchBarComponent {
 
   clearSearch(){
     this.searchControl.setValue('')
-
   }
 
   @HostListener('document:click', ['$event'])

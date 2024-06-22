@@ -29,10 +29,10 @@ ul{
     box-shadow: 0 0 5px 0 #B4B4B4;
     border-radius: 20px;
 
-    overflow: hidden;
+    overflow-x: hidden;
     z-index: 10;
     max-height: 200px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .searchItem{
@@ -42,6 +42,11 @@ ul{
 
 .searchItem:hover{
     background-color: rgb(217, 217, 217, 0.19);
+}
+
+.searchDropdown {
+    scrollbar-width: thin; 
+    scrollbar-color: #88BB49 transparent; 
 }
 
 @media (max-width: 1024px) {

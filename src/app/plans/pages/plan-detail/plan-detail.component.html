@@ -1,0 +1,39 @@
+<div class="plan-container">
+  <div *ngIf="plan" class="plan-details">
+    <div class="plan-header">
+      <h1 class="plan-name">{{ plan.name }}</h1>
+      <button *ngIf="plan.saved" class="delete-button" (click)="deletePlan() ">delete</button>
+    </div>
+
+    <div class="week-day-selector">
+      <div class="week-selector">
+        <label for="week">Week</label>
+        <select id="week" [(ngModel)]="selectedWeek">
+          <option value="" disabled selected>Seleccione una semana</option>
+          <option *ngFor="let weekIndex of getRange(plan.weeks.length)" [value]="weekIndex">
+            Semana {{ weekIndex + 1 }}
+          </option>
+        </select>
+      </div>
+      <div class="day-selector">
+        <label for="day">Day</label>
+        <select id="day" [(ngModel)]="selectedDayIndex">
+          <option value="" disabled selected>Seleccione un día</option>
+          <option *ngFor="let i of getRange(plan.weeks[this.selectedWeek!].days.length)" [value]="i">
+            Día {{ i + 1 }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div *ngIf="selectedWeek!==undefined && selectedDayIndex !== undefined" class="meals-container">
+      <app-meal-detail mealType="breakfast" [meal]="plan.weeks[this.selectedWeek].days[this.selectedDayIndex].breakfast" [editable]="plan.saved" [weekIndex]="this.selectedWeek" [dayIndex]="this.selectedDayIndex" [planId]="this.plan.id"></app-meal-detail>
+      <app-meal-detail mealType="lunch" [meal]="plan.weeks[this.selectedWeek].days[this.selectedDayIndex].lunch" [editable]="plan.saved"  [weekIndex]="this.selectedWeek" [dayIndex]="this.selectedDayIndex" [planId]="this.plan.id"></app-meal-detail>
+      <app-meal-detail mealType="snack" [meal]="plan.weeks[this.selectedWeek].days[this.selectedDayIndex].snack" [editable]="plan.saved"  [weekIndex]="this.selectedWeek" [dayIndex]="this.selectedDayIndex" [planId]="this.plan.id"></app-meal-detail>
+      <app-meal-detail mealType="dinner" [meal]="plan.weeks[this.selectedWeek].days[this.selectedDayIndex].dinner" [editable]="plan.saved" [weekIndex]="this.selectedWeek" [dayIndex]="this.selectedDayIndex" [planId]="this.plan.id"></app-meal-detail>
+      <app-meal-detail mealType="dinner" [meal]="plan.weeks[this.selectedWeek].days[this.selectedDayIndex].dinner" [editable]="plan.saved" [weekIndex]="this.selectedWeek" [dayIndex]="this.selectedDayIndex" [planId]="this.plan.id"></app-meal-detail>
+    </div>
+
+    <button class="save-button">Save</button>
+  </div>
+</div>

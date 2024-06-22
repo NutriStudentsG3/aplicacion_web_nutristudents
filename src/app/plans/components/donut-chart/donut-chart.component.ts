@@ -119,7 +119,7 @@ export class DonutChartComponent implements OnInit,  OnDestroy {
   private refreshData(id: string): void {
   
     console.log("Refreshing data for id:", id, this.data);
-    let temp = this.foodService.getFoodById(Number(id))
+    let temp = this.foodService.getFoodById(id)
     this.data = {
       carbs : temp?.carbs!,
       fat : temp?.fat!,
