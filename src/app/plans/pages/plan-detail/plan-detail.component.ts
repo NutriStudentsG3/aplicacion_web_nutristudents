@@ -67,4 +67,5 @@ export class PlanDetailComponent implements OnInit {
   getRange(count: number): number[] {
     return Array(count).fill(0).map((x, i) => i);
   }
+  
 }

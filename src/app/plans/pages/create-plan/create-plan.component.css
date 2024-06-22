@@ -1,75 +1,76 @@
-/* General form styling */
+/* Aplicar a todo el formulario para que ocupe el 100% del ancho */
+
 form {
-  max-width: 400px;
-  margin: auto;
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  background-color: #ffffff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+  display: flex;
+    flex-direction: column;
+    justify-content: center; /* Agrega esta línea */
+    width: 100%;
+    padding: 20px;
+  
 }
 
-/* Label styling */
-form label {
+h2{
+  font-size: 2em; /* Aumenta el tamaño de la fuente para que resalte más */
+  margin: 20px 0; /* Espacio alrededor del título */
+  padding-left: 20px; /* Alinear el título a la izquierda */
+  color: black; /* Cambia el color del texto */
+  background-color: white; /* Cambia el color de fondo */
+}
+
+/* Ajustar los inputs, selects y labels para que ocupen el 100% del ancho disponible */
+input[type="text"],
+input[type="number"],
+select {
+  width: calc(100% - 60px);
+  padding: 24px;
+  margin-bottom: 40px;
+  border: none;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+  margin-bottom: 30px;
+  position:relative;
+}
+
+label {
   display: block;
-  margin-bottom: 8px;
-  color: #333333;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-bottom:20px;
   font-weight: bold;
 }
 
-/* Input and select styling */
-form input[type="text"],
-form input[type="number"],
-form select {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #cccccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-/* Placeholder color */
-form input::placeholder {
-  color: #a0a0a0;
-}
-
-/* Checkbox container styling */
+/* Ajustar el contenedor del checkbox para alinearlo correctamente */
 .checkbox-container {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
 }
 
-/* Checkbox styling */
-form input[type="checkbox"] {
-  width: auto;
+input[type="checkbox"] {
   margin-right: 10px;
+  transform: scale(1.5);
 }
 
-/* Submit button styling */
-form input[type="submit"] {
-  background-color: #9acd32;
-  color: white;
-  padding: 10px 15px;
+label[for="decidir"] {
+  font-size: 14px;
+}
+
+input[type="submit"] {
+  width: calc(100% - 60px);
+  padding: 20px;
+  background-color: #8bc34a;
   border: none;
-  border-radius: 20px;
-  cursor: pointer;
+  border-radius: 25px;
+  color: white;
   font-size: 16px;
-  font-weight: bold;
-  text-transform: uppercase;
-  transition: background-color 0.3s ease;
+  position: absolute;
+  cursor: pointer;
+  bottom: 40px;
 }
 
-form input[type="submit"]:hover {
-  background-color: #7aa72b;
-}
-
-/* Focus and hover effects */
-form input[type="text"]:focus,
-form input[type="number"]:focus,
-form select:focus {
-  border-color: #9acd32;
-  outline: none;
+input[type="submit"]:hover {
+  background-color: #7cb342;
 }

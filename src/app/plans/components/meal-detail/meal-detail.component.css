@@ -1,23 +1,97 @@
-/* meal-detail.component.css */
 .meal-details {
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .meal-details .header {
-    background-color: #f0f0f0;
-    padding: 10px;
-    cursor: pointer;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .meal-details .content {
-    padding: 10px;
-    display: none;
-  }
-  
-  .meal-details.open .content {
-    display: block;
-  }
-  
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  margin: 10px 0;
+  overflow: hidden;
+}
+
+.meal-details .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.meal-details .arrow {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #000; /* Color de la flecha */
+  transition: transform 0.3s ease;
+}
+
+.meal-details .arrow.right {
+  transform: rotate(90deg);
+}
+
+.meal-details .arrow.down {
+  transform: rotate(0deg);
+}
+
+.header {
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #e0e0e0;
+  cursor: pointer;
+}
+
+.header h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.content {
+  padding: 10px;
+}
+
+.food-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.food-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.food-name {
+  font-size: 16px;
+}
+
+.food-grams {
+  font-size: 12px;
+  color: #888;
+}
+
+.food-kcal {
+  font-size: 16px;
+  color: #000;
+}
+
+.food-add {
+  display: flex;
+  align-items: center;
+}
+
+.add-btn {
+  border: none;
+  background-color: transparent;
+  color: #88BB49;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.add-food-btn {
+  border: none;
+  background-color: transparent;
+  color: #88BB49;
+  font-size: large;
+  cursor: pointer;
+  display: block;
+  margin: 10px auto;
+}

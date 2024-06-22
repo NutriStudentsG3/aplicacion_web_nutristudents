@@ -1,22 +1,29 @@
-<div class="plan-list-container">
-  <h1>Mis Planes de Alimentación</h1>
-  
-  <!-- Botones para crear nuevo plan y explorar planes -->
-  <div class="plan-actions">
-      <button [routerLink]="'/plans/create'">Nuevo Plan</button>
-      <button [routerLink]="'/plans/explore'">Explorar Planes</button>
-  </div>
 
-  <!-- Lista de planes guardados -->
-  <div class="saved-plans">
-      <h2>Planes Guardados</h2>
+
+
+<div class="plan-list-container">
+    <h1>Planes</h1>
+  
+    <!-- Lista de planes guardados -->
+    <div class="saved-plans">
       <ul *ngIf="savedPlans.length > 0; else noPlansMessage">
-          <li *ngFor="let plan of savedPlans">
-              <a [routerLink]="['/plans/detail', plan.id]">{{ plan.name }}</a>
-          </li>
+        <li *ngFor="let plan of savedPlans">
+          <div class="plan-info">
+            <a [routerLink]="['/plans/detail', plan.id]">{{ plan.name }}</a>
+            <span class="plan-date">15 may 2024</span>
+          </div>
+          <button class="edit-button">edit</button>
+        </li>
       </ul>
       <ng-template #noPlansMessage>
-          <p class="no-plans-message">Aún no hay elementos guardados.</p>
+        <p class="no-plans-message">Aún no hay elementos guardados.</p>
       </ng-template>
+    </div>
+  
+    <!-- Botones para crear nuevo plan y explorar planes -->
+    <div class="plan-actions">
+      <button [routerLink]="'/plans/create'">Create</button>
+      <button [routerLink]="'/plans/explore'">Explore</button>
+    </div>
   </div>
-</div>
+  
