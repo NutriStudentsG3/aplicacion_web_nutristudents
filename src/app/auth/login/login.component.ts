@@ -22,11 +22,18 @@ export class LoginComponent {
 
   onSubmit(form: any) {
     if (form.valid) {
-      if (this.authService.validateUser(this.email, this.password)) {
-        this.router.navigate([this.returnUrl]);
-      } else {
-        this.loginError = 'Usuario o Contraseña incorrectos';
-      }
+      this.authService.login(this.email, this.password).subscribe({
+        next: (isValid) => {
+          if (isValid) {
+            this.router.navigate([this.returnUrl]);
+          } else {
+            this.loginError = 'Usuario o Contraseña incorrectos';
+          }
+        },
+        error: (error) => {
+          this.loginError = 'Hubo un problema al iniciar sesión. Por favor, intenta nuevamente.';
+        }
+      });
     }
   }
 }
