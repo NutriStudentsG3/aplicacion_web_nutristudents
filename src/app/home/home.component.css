@@ -1,0 +1,160 @@
+.container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  
+  .title {
+    color: #7cc045;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    margin-bottom: 15px;
+  }
+  
+  .subtitle {
+    color: black;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    margin-bottom: 15px;
+  }
+  
+  /* Diseño del layout */
+  .layout {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .articles, .side-panel {
+    flex: 1;
+  }
+  
+  /* Estilos para la sección de artículos */
+  .articles {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .article {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px;
+    margin: 10px 0; /* Más margen para separar artículos */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .article-image {
+    width: 120px; /* Aumenta el tamaño de la imagen */
+    height: 120px;
+    margin-right: 15px;
+    border-radius: 8px;
+    object-fit: cover; /* Ajusta la imagen para que quepa dentro del contenedor */
+  }
+  
+  .article-content {
+    flex: 1;
+  }
+  
+  .article-content h3 {
+    margin: 0 0 5px 0;
+    color: #333;
+  }
+  
+  .article-content p {
+    margin: 0;
+    color: #666;
+  }
+  
+  /* Estilos para la barra lateral */
+  .side-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* Sección del objetivo */
+  .goal-section {
+    background-color: #e9f5e9;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .goal-box {
+    background-color: #ccecc7;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  /* Sección de recordatorios */
+  .reminders {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+  }
+  
+  .reminders ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .reminders li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px 0;
+  }
+  
+  .reminders input {
+    padding: 8px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: calc(100% - 20px);
+  }
+  
+  .edit-btn {
+    background-color: #7cc045;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right;
+  }
+  
+  .edit-btn:hover {
+    background-color: #6ab03b;
+  }
+  
+  .delete-btn {
+    background-color: #ff6b6b;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  .delete-btn:hover {
+    background-color: #e55a5a;
+  }
+  
+  /* Enlace a la comunidad */
+  .community-link {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .community-link a {
+    color: #7cc045;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  

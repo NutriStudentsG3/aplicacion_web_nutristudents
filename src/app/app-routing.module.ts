@@ -15,10 +15,11 @@ import { SubscriptionFormComponent } from './account/subscription-form/subscript
 import { CommunityPageComponent } from './community/community-page/community-page.component';
 import { FoodProfileComponent } from './plans/pages/food-profile/food-profile.component';
 import { PlanLayoutComponent } from './plans/layouts/plan-layout/plan-layout.component';
+import { HomeComponent } from './home/home.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'obejectives', component: ObejectivesComponent },
@@ -31,7 +32,7 @@ const routes: Routes = [
     //canActivate: [AuthGuard],
     children: [
 
-      { path: 'home', component: NotImplementedComponent},
+      { path: 'home', component: HomeComponent},
       { path: 'profile', component: ProfilePageComponent},
       { path: 'community', component: CommunityPageComponent},
       { path: 'profile/:id', component: NotImplementedComponent},
@@ -50,7 +51,7 @@ const routes: Routes = [
 
   { 
     path: '**', 
-    redirectTo: '/home' 
+    redirectTo: '/login' 
   } 
 
 ];

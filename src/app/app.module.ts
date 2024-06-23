@@ -10,11 +10,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthModule } from './auth/auth.module';
 import { CommunityModule } from './community/community.module';
 import { PlansModule } from './plans/plans.module';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
     ],
 
   imports: [
