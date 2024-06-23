@@ -34,12 +34,12 @@ const routes: Routes = [
 
       { path: 'home', component: HomeComponent},
       { path: 'profile', component: ProfilePageComponent},
-      { path: 'community', component: CommunityPageComponent},
-      { path: 'profile/:id', component: NotImplementedComponent},
+      { path: 'profile/:id', component: ProfilePageComponent},
       {
         path: '',
         component: PlanLayoutComponent,
         children:[
+          { path: 'community', component: CommunityPageComponent},
           { path: 'food/:id', component: FoodProfileComponent },
           { path: 'free-trial', component: FreeTrialComponent },
           { path: 'subscription-form', component: SubscriptionFormComponent},

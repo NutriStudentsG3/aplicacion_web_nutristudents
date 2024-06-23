@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../../models/user.model';
 import { UserStoreService } from '../../../services/user.store.service';
 import { Subscription } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-information-form',
@@ -12,8 +14,9 @@ import { Subscription } from 'rxjs';
 export class InformationFormComponent implements OnInit , OnDestroy{
   userForm : FormGroup
   user : User|undefined
-  subscription: Subscription;
-  constructor(private formBuilder : FormBuilder, private userStore : UserStoreService){
+  subscription: Subscription|undefined;
+
+  constructor(private formBuilder : FormBuilder, private userStore : UserStoreService, private activatedRoute: ActivatedRoute, private userService: UserService){
 
     this.userForm = this.formBuilder.group({
       username: [this.user?.username , Validators.required],
@@ -23,25 +26,32 @@ export class InformationFormComponent implements OnInit , OnDestroy{
       email: [this.user?.email,[ Validators.required, Validators.email]],
     })
 
-    this.subscription = this.userStore.user$.subscribe(user => {
-      if (user) {
-        this.user = user;
-        this.userForm.patchValue(user); // Update form with user data
+    this.activatedRoute.paramMap.subscribe(params => {
+      const id = params.get('id');
+      if(id){
+        this.user = this.userService.getUserByUsername(id)!;
+        this.userForm.patchValue(this.user);
+        console.log(this.user);
       }
     });
+    if(this.userStore.getUser()?.username==this.user?.username){
+      this.subscription = this.userStore.user$.subscribe(user => {
+        if (user) {
+          this.user = user;
+          this.userForm.patchValue(user); // Update form with user data
+        }
+      });
+    }
+
   }
 
   ngOnInit(): void {
-    this.subscription = this.userStore.user$.subscribe(user => {
-      if (user) {
-        this.user = user;
-        this.userForm.patchValue(user); // Update form with user data
-      }
-    });
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    if(this.userStore.getUser()?.username==this.user?.username){
+      this.subscription!.unsubscribe();
+    }
   }
 
   onSubmit(): void {

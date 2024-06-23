@@ -13,6 +13,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormField } from '@angular/material/form-field';
 import { FreeTrialComponent } from './free-trial/free-trial.component';
 import { SubscriptionFormComponent } from './subscription-form/subscription-form.component';
+import { PostSectionComponent } from './components/tasks/post-section/post-section.component';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,8 @@ import { SubscriptionFormComponent } from './subscription-form/subscription-form
     UserCardComponent,
     TasksTabComponent,
     FreeTrialComponent,
-    SubscriptionFormComponent
+    SubscriptionFormComponent,
+    PostSectionComponent
   ],
  
   imports: [
@@ -32,7 +36,9 @@ import { SubscriptionFormComponent } from './subscription-form/subscription-form
     MatFormFieldModule,
     MatInputModule,
     MatFormField,
-    MatInputModule
+    MatInputModule,
+    FormsModule,
+    RouterModule,
   ],
   
   exports: [
