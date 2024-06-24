@@ -6,17 +6,17 @@ import { Post } from '../models/posts.model';
 })
 export class CommunityService {
 
-  posts: Post[] = [
+  private posts: Post[] = [
     { 
       content: 'Buenos días comunidad. Hoy les quiero presentar una rica receta que he preparado para los amantes de la comida alta en proteína. Es muy rápida y accesible. Deben probarlo', 
       imageUrl: '/images/post1.jpg', 
       likes: 150, 
       comments: [
-        { content: '¡Se ve deliciosa! Gracias por compartir.', username: 'Rosa Rodriguez', shortUsername: 'RRodriguez', timestamp: '19 Junio 13:55pm' }, 
-        { content: '¿Cuánto tiempo tarda en prepararse?', username: 'Lucero Manchay', shortUsername: 'LucManchay', timestamp: '19 Junio 14:00pm' }
+        { content: '¡Se ve deliciosa! Gracias por compartir.', username: 'Rosa Rodriguez', shortUsername: '@RRodriguez', timestamp: '19 Junio 13:55pm' }, 
+        { content: '¿Cuánto tiempo tarda en prepararse?', username: 'Lucero Manchay', shortUsername: '@LucManchay', timestamp: '19 Junio 14:00pm' }
       ],
       username: 'Barbara Muñoz',
-      shortUsername: 'barbM',
+      shortUsername: '@barbM',
       timestamp: '19 Junio 13:50pm'
     },
     { 
@@ -24,21 +24,21 @@ export class CommunityService {
       imageUrl: '/images/post2.jpg', 
       likes: 20, 
       comments: [
-        { content: '¡Excelente opción para después del gimnasio!', username: 'Ilan Nuñez', shortUsername: 'IlanDa', timestamp: '17 Junio 14:35pm' }
+        { content: '¡Excelente opción para después del gimnasio!', username: 'Ilan Nuñez', shortUsername: '@IlanDa', timestamp: '17 Junio 14:35pm' }
       ],
       username: 'Pedro Pérez',
-      shortUsername: 'pedroP',
+      shortUsername: '@pedroP',
       timestamp: '17 Junio 14:30pm'
     },
     { 
       content: '¿Podrían compartirme algunas ideas de desayunos que sean nutritivos y rápidos de hacer? Estoy buscando opciones que me mantengan lleno de energía hasta el almuerzo y que no me tomen mucho tiempo de preparación por las mañanas porque debo ir a la universidad. Agradezco mucho sus sugerencias!', 
       likes: 15, 
       comments: [
-        { content: 'Puedes intentar con un batido de frutas y avena.', username: 'Jose Mayhua', shortUsername: 'MiwaJose', timestamp: '18 Junio 10:15am' }, 
-        { content: 'Los huevos revueltos con espinacas son rápidos y nutritivos.', username: 'Braulio Bartra', shortUsername: 'brauBartra', timestamp: '18 Junio 10:30am' }
+        { content: 'Puedes intentar con un batido de frutas y avena.', username: 'Jose Mayhua', shortUsername: '@MiwaJose', timestamp: '18 Junio 10:15am' }, 
+        { content: 'Los huevos revueltos con espinacas son rápidos y nutritivos.', username: 'Braulio Bartra', shortUsername: '@brauBartra', timestamp: '18 Junio 10:30am' }
       ],
       username: 'Ana Gómez',
-      shortUsername: 'anaG',
+      shortUsername: '@anaG',
       timestamp: '18 Junio 10:00am'
     }
   ];
@@ -47,6 +47,10 @@ export class CommunityService {
 
   getAllPosts(): Post[] {
     return this.posts;
+  }
+
+  addPost(post: Post): void {
+    this.posts.unshift(post);
   }
 
   findPostsByUsername(username: string): Post[] {
