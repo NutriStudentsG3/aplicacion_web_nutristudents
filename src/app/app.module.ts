@@ -11,6 +11,7 @@ import { AuthModule } from './auth/auth.module';
 import { CommunityModule } from './community/community.module';
 import { PlansModule } from './plans/plans.module';
 import { HomeComponent } from './home/home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { HomeComponent } from './home/home.component';
     CommunityModule,
     FormsModule,
     PlansModule,
+    HttpClientModule
     ],
   providers: [
     provideAnimationsAsync()

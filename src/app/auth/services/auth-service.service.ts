@@ -1,17 +1,34 @@
+import { enviroment } from './../../enviroments/enviroment';
 import { Injectable } from '@angular/core';
-import { UserStoreService } from '../../account/services/user.store.service';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
+  private apiUrl = enviroment.apiurl; // URL base de tu API
 
-  constructor(private userStore : UserStoreService) { }
+  constructor(private http: HttpClient) { }
 
-  validateUser(email: string, password: string): boolean{
-    //implement api call
-    this.userStore.loadSampleUser()
-    return true
+  login(email: string, contraseña: string): Observable<any> {
+    const url = `${this.apiUrl}/usuario/login`; // Ajusta la URL según tu endpoint de autenticación
+
+    return this.http.post<any>(url, { email, contraseña }).pipe(
+      catchError(this.handleError)
+    )
   }
+
   
+  private handleError(error: HttpErrorResponse) {
+    let errorMessage = 'Unknown error!';
+    if (error.error instanceof ErrorEvent) {
+      // Client-side errors
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // Server-side errors
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    return throwError(() => new Error(errorMessage));
+  }
 }

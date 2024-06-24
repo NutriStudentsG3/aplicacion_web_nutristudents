@@ -29,7 +29,7 @@ const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
 
       { path: 'home', component: HomeComponent},
@@ -51,7 +51,7 @@ const routes: Routes = [
 
   { 
     path: '**', 
-    redirectTo: '/login' 
+    redirectTo: '/home' 
   } 
 
 ];
