@@ -9,7 +9,8 @@
             <a class="header-nav-item" routerLink="/plans">Planes</a>
         </div>
         <ng-container *ngIf="user; else loggedOut">
-            <a routerLink="/profile">
+            <a [routerLink]="['/profile'
+        , this.user!.username]">
                 <img  class="header-image" src="/images/profile-user.webp" alt="">
             </a>
         </ng-container>

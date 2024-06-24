@@ -1,0 +1,35 @@
+
+<div *ngIf="posts.length; else noPosts">
+    <div class="post" *ngFor="let post of posts" style="margin: 1rem auto;">
+        <div class="post-header">
+            <a [routerLink]="['/profile', post.shortUsername]">{{ post.username }} {{ "@" + post.shortUsername }} el {{ post.timestamp }}</a>
+        </div>
+        <div class="post-content">
+            <p>{{ post.content }}</p>
+            <img *ngIf="post.imageUrl" [src]="post.imageUrl" alt="Imagen del post">
+        </div>
+        <div class="post-footer">
+            <div class="likes" (click)="likePost(post)">
+                <img src="/images/like.png" alt="Like">
+                <span>{{ post.likes }}</span>
+            </div>
+            <div class="comments" (click)="toggleComments(post)">
+                <img src="/images/coment.png" alt="Comentarios">
+                <span>{{ post.comments.length }}</span>
+            </div>
+        </div>
+        <div class="comments-section" *ngIf="post.showComments">
+            <div class="comment" *ngFor="let comment of post.comments">
+                <a [routerLink]="['/profile', comment.shortUsername]">{{ comment.username }} {{ "@" + comment.shortUsername }} - {{ comment.timestamp }}</a>
+                <p>{{ comment.content }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #noPosts >
+    <div style="display: flex; flex-direction: column; align-items: center; ">
+        <span style=" font-size: xx-large; margin: 1rem; color: gray;">No Post Found</span>
+
+    </div>
+</ng-template>
+

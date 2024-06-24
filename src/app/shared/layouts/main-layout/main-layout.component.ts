@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserStoreService } from '../../../account/services/user.store.service';
+import { User } from '../../../account/models/user.model';
 
 @Component({
   selector: 'app-main-layout',
@@ -6,12 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './main-layout.component.css'
 })
 export class MainLayoutComponent implements OnInit {
-  user: any = null; // Declare the user property
+  user : User|undefined 
 
-  constructor() { }
+  constructor(private userStore: UserStoreService) {
+    this.user = this.userStore.getUser(); // Get the user data 
+
+  }
 
   ngOnInit(): void {
-    this.user = {}; // Initialize user data
+   
   }
 
 }
