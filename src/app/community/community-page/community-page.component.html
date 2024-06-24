@@ -1,6 +1,6 @@
 <div class="comunidad">
   <section id="community">
-    <h2 class="title"> <- Comunidad</h2>
+    <h2 class="title">Comunidad</h2>
     <p class="subtitle">¿Qué te gustaría compartir con nuestra comunidad?</p>
     <div id="container-post">
       <div id="create-post">
@@ -23,7 +23,7 @@
       <!-- Mostrar el post más visto si está activo -->
       <div class="post" *ngIf="showMostViewedPost && mostViewedPost">
         <div class="post-header">
-          <p>Publicado por {{ mostViewedPost.username }} {{ mostViewedPost.shortUsername }} el {{ mostViewedPost.timestamp }}</p>
+          <a [routerLink]="['/profile', mostViewedPost.shortUsername]">Publicado por {{ mostViewedPost.username }}  {{"@"+ mostViewedPost.shortUsername }} el {{ mostViewedPost.timestamp }}</a>
         </div>
         <div class="post-content">
           <p>{{ mostViewedPost.content }}</p>
@@ -43,7 +43,7 @@
           <div class="comment" *ngFor="let comment of mostViewedPost.comments">
             <p>{{ comment.content }}</p>
             <!-- Mostrar el nombre completo del usuario en el comentario -->
-            <p>{{ comment.username }} {{ comment.shortUsername }} - {{ comment.timestamp }}</p>
+            <a [routerLink]="['/profile', comment.shortUsername]">{{ comment.username }} {{ "@"+comment.shortUsername }} - {{ comment.timestamp }}</a>
           </div>
           <div class="comment-form">
             <textarea [(ngModel)]="mostViewedPost.newComment" placeholder="Añadir un comentario" (input)="adjustTextAreaHeight($event)"></textarea>
@@ -55,7 +55,7 @@
       <!-- Mostrar todos los posts -->
       <div class="post" *ngFor="let post of posts">
         <div class="post-header">
-          <p>{{ post.username }} {{ post.shortUsername }} el {{ post.timestamp }}</p>
+          <a [routerLink]="['/profile', post.shortUsername]">{{ post.username }} {{ "@"+post.shortUsername }} el {{ post.timestamp }}</a>
         </div>
         <div class="post-content">
           <p>{{ post.content }}</p>
@@ -73,7 +73,7 @@
         </div>
         <div class="comments-section" *ngIf="post.showComments">
           <div class="comment" *ngFor="let comment of post.comments">
-            <p>{{ comment.username }} {{ comment.shortUsername }} - {{ comment.timestamp }}</p>
+            <a [routerLink]="['/profile', comment.shortUsername]">{{ comment.username }} {{ "@"+comment.shortUsername }} - {{ comment.timestamp }}</a>
             <p>{{ comment.content }}</p>
             <!-- Mostrar el nombre completo del usuario en el comentario -->
         
@@ -84,6 +84,7 @@
           </div>
         </div>
       </div>
+      
     </div>
   </section>
   <aside>

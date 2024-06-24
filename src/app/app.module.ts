@@ -10,11 +10,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthModule } from './auth/auth.module';
 import { CommunityModule } from './community/community.module';
 import { PlansModule } from './plans/plans.module';
+import { HomeComponent } from './home/home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
     ],
 
   imports: [
@@ -28,6 +31,7 @@ import { PlansModule } from './plans/plans.module';
     CommunityModule,
     FormsModule,
     PlansModule,
+    HttpClientModule
     ],
   providers: [
     provideAnimationsAsync()

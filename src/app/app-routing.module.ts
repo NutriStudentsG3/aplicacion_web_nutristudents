@@ -14,10 +14,12 @@ import { FreeTrialComponent } from './account/free-trial/free-trial.component';
 import { SubscriptionFormComponent } from './account/subscription-form/subscription-form.component';
 import { CommunityPageComponent } from './community/community-page/community-page.component';
 import { FoodProfileComponent } from './plans/pages/food-profile/food-profile.component';
+import { PlanLayoutComponent } from './plans/layouts/plan-layout/plan-layout.component';
+import { HomeComponent } from './home/home.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'obejectives', component: ObejectivesComponent },
@@ -27,20 +29,30 @@ const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
-      
-      { path: 'home', component: NotImplementedComponent},
+
+      { path: 'home', component: HomeComponent},
       { path: 'profile', component: ProfilePageComponent},
-      { path: 'community', component: CommunityPageComponent},
-      { path: 'profile/:id', component: NotImplementedComponent},
-      { path: 'food/:id', component: FoodProfileComponent },
-      { path: 'free-trial', component: FreeTrialComponent },
-      { path: 'subscription-form', component: SubscriptionFormComponent},
+      { path: 'profile/:id', component: ProfilePageComponent},
+      {
+        path: '',
+        component: PlanLayoutComponent,
+        children:[
+          { path: 'community', component: CommunityPageComponent},
+          { path: 'food/:id', component: FoodProfileComponent },
+          { path: 'free-trial', component: FreeTrialComponent },
+          { path: 'subscription-form', component: SubscriptionFormComponent},
+          { path: 'plans', loadChildren: () => import('./plans/plans.module').then(m => m.PlansModule) },
+        ]
+      }
     ]
   },
 
-  { path: '**', redirectTo: '/home' } 
+  { 
+    path: '**', 
+    redirectTo: '/home' 
+  } 
 
 ];
 

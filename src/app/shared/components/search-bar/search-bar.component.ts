@@ -11,7 +11,6 @@ import { FoodService } from '../../../plans/services/food.service';
 export class SearchBarComponent {
   searchControl = new FormControl('');
   showDropdown = false;
-  items: any[] 
   filteredItems: any[] = [];
 
   constructor(private hostElement: ElementRef, private foodService: FoodService) {
@@ -19,21 +18,17 @@ export class SearchBarComponent {
       this.filteredItems = this.filterItems(value);
     });
 
-    this.items = foodService.getAllFoods()
   }
 
   filterItems(searchTerm: string | null) {
     if (!searchTerm) {
       return [];
     }
-    return this.items.filter(item =>
-      item.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    return this.foodService.filterItems(searchTerm);
   }
 
   clearSearch(){
     this.searchControl.setValue('')
-
   }
 
   @HostListener('document:click', ['$event'])

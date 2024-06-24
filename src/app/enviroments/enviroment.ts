@@ -1,0 +1,1 @@
+export const enviroment ={ producction:false, apiurl:'https://nutristudents-api-fake.onrender.com'}

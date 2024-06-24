@@ -1,0 +1,46 @@
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="home.component.css">
+<div class="container">
+  <br>
+  <h1 class="title">BIENVENIDO A SNACKTRACK!</h1>
+  <h2 class="subtitle">Los artículos del día de hoy</h2>
+
+  <div class="layout">
+    <div class="articles">
+      <div class="article" *ngFor="let article of articles">
+        <img [src]="article.image" alt="Imagen del artículo" class="article-image">
+        <div class="article-content">
+          <h3>{{ article.title }}</h3>
+          <p>{{ article.readTime }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-panel">
+      <div class="goal-section">
+        <h2>Tu Objetivo</h2>
+        <div class="goal-box">{{ userGoal }}</div>
+      </div>
+
+      <div class="reminders">
+        <h2>Recordatorios
+          <button class="edit-btn" (click)="toggleEditMode()">Editar</button>
+        </h2>
+        <ul>
+          <li *ngFor="let reminder of reminders; let i = index">
+            {{ reminder }}
+            <button *ngIf="isEditing" class="delete-btn" (click)="deleteReminder(i)">Borrar</button>
+          </li>
+        </ul>
+        <div *ngIf="isEditing">
+          <input type="text" [(ngModel)]="newReminder" placeholder="Agregar nuevo recordatorio">
+          <button (click)="addReminder()">Agregar</button>
+        </div>
+      </div>
+
+      <div class="community-link">
+        <a routerLink="/community">Descubre la comunidad →</a>
+      </div>
+    </div>
+  </div>
+</div>

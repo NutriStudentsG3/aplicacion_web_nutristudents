@@ -1,0 +1,22 @@
+
+<h2>Crear Plan</h2>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <label for="nombre">Nombre: </label>
+  <input type="text" id="nombre" formControlName="nombre" placeholder="Coloca el nombre de plan" required minlength="1">
+
+  <label for="categoria">Categoría de tu plan: </label>
+  <select formControlName="categoria" id="categoria">
+    <option value="Pérdida de Peso">Pérdida de Peso</option>
+    <option value="Mantenimiento">Mantenimiento</option>
+  </select>
+
+  <label for="semanas">Semanas</label>
+  <input type="number" id="semanas" formControlName="semanas" placeholder="Duración en semanas" min="1" max="5">
+
+  <div class="checkbox-container">
+    <input type="checkbox" id="decidir" formControlName="decidir">
+    <label for="decidir">Dejar que la aplicación decida</label>
+  </div>
+
+  <input type="submit" value="Crear Plan">
+</form>

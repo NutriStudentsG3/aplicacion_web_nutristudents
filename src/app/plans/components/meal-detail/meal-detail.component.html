@@ -1,0 +1,18 @@
+<div class="meal-details" [ngClass]="{ 'open': isOpen }">
+  <div class="header" (click)="toggleAccordion()">
+    <h3>{{ mealType }}</h3>
+    <span class="arrow" [ngClass]="{ 'down': isOpen, 'right': !isOpen }"></span>
+  </div>
+  <div class="content" *ngIf="isOpen">
+    <div *ngFor="let food of meal; let i = index" class="food-item">
+      <div class="food-info">
+        <span class="food-name">{{ food.name }}</span>
+        <span class="food-grams">{{ food.grams }}g</span>
+      </div>
+      <div class="food-kcal">
+        <span>{{ food.calories }} kcal</span>
+      </div>
+    </div>
+    <button *ngIf="this.editable" style="border: none; background-color: transparent; color: #88BB49; font-size: large; cursor: pointer;" (click)="goToAdd()">Añadir +</button>
+  </div>
+</div>
