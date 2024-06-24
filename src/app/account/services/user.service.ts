@@ -1,3 +1,4 @@
+import { UserStoreService } from './user.store.service';
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
 import { HttpClient } from '@angular/common/http';
@@ -11,7 +12,7 @@ export class UserService {
 
     private users: User[] | undefined;
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private userStoreService: UserStoreService) {
         // Initialize users
         this.initUsers();
     }
@@ -34,4 +35,17 @@ export class UserService {
         }
         return this.users?.find(user => user.username === username);
     }
+
+    public addUser(user: User): boolean {
+        try{
+            this.users?.push(user);
+            this.userStoreService.setUser(user);
+            return true;
+        }
+        catch(e){
+            console.log(e)
+            return false;
+        }
+    }
 }
+               
