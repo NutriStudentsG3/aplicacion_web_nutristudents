@@ -1,4 +1,6 @@
 import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { UserStoreService } from '../../account/services/user.store.service';
+import { User } from '../../account/models/user.model';
 
 interface Comment {
   content: string;
@@ -29,8 +31,10 @@ export class CommunityPageComponent {
   selectedImage: File | null = null;
   imagePreviewUrl: string | ArrayBuffer | null = null;
   isModalVisible: boolean = false;
-  showMostViewedPost: boolean = false; // Controla si mostrar el post más visto
-  mostViewedPost: Post | null = null; // Almacena el post más visto
+  showMostViewedPost: boolean = false;
+  mostViewedPost: Post | null = null;
+  currentUser: User | undefined;
+  errorMessage: string | null = null;
 
   posts: Post[] = [
     { 
@@ -41,8 +45,8 @@ export class CommunityPageComponent {
         { content: '¡Se ve deliciosa! Gracias por compartir.', username: 'Rosa Rodriguez', shortUsername: '@RRodriguez', timestamp: '19 Junio 13:55pm' }, 
         { content: '¿Cuánto tiempo tarda en prepararse?', username: 'Lucero Manchay', shortUsername: '@LucManchay', timestamp: '19 Junio 14:00pm' }
       ],
-      username: 'Barbara Muñoz',
-      shortUsername: '@barbM',
+      username: 'Michael Williams',
+      shortUsername: '@mike_w',
       timestamp: '19 Junio 13:50pm'
     },
     { 
@@ -52,8 +56,8 @@ export class CommunityPageComponent {
       comments: [
         { content: '¡Excelente opción para después del gimnasio!', username: 'Ilan Nuñez', shortUsername: '@IlanDa', timestamp: '17 Junio 14:35pm' }
       ],
-      username: 'Pedro Pérez',
-      shortUsername: '@pedroP',
+      username: 'Jane Smith',
+      shortUsername: '@jane_doe',
       timestamp: '17 Junio 14:30pm'
     },
     { 
@@ -63,13 +67,17 @@ export class CommunityPageComponent {
         { content: 'Puedes intentar con un batido de frutas y avena.', username: 'Jose Mayhua', shortUsername: '@MiwaJose', timestamp: '18 Junio 10:15am' }, 
         { content: 'Los huevos revueltos con espinacas son rápidos y nutritivos.', username: 'Braulio Bartra', shortUsername: '@brauBartra', timestamp: '18 Junio 10:30am' }
       ],
-      username: 'Ana Gómez',
-      shortUsername: '@anaG',
+      username: 'Laura Martinez',
+      shortUsername: '@AMastard3rs',
       timestamp: '18 Junio 10:00am'
     }
   ];
 
-  constructor() {}
+  constructor(private userStore: UserStoreService) {
+    this.userStore.user$.subscribe(user => {
+      this.currentUser = user;
+    });
+  }
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -84,20 +92,27 @@ export class CommunityPageComponent {
   }
 
   createPost(): void {
+    this.errorMessage = null;
+    if (!this.currentUser) {
+      this.errorMessage = 'No user is currently logged in.';
+      return;
+    }
     if (this.newPostContent.trim()) {
       const newPost: Post = {
         content: this.newPostContent,
         imageUrl: this.imagePreviewUrl as string,
         likes: 0,
         comments: [],
-        username: 'Usuario Actual', // Aquí deberías obtener el nombre de usuario actual desde tu sistema de autenticación
-        shortUsername: '@userActual', // Aquí el nombre corto o identificador del usuario actual
+        username: `${this.currentUser.firstname} ${this.currentUser.lastname}`,
+        shortUsername: `@${this.currentUser.username}`,
         timestamp: this.getCurrentTimestamp()
       };
       this.posts.unshift(newPost);
       this.newPostContent = '';
       this.selectedImage = null;
       this.imagePreviewUrl = null;
+    } else {
+      this.errorMessage = 'Post content cannot be empty.';
     }
   }
 
@@ -110,11 +125,11 @@ export class CommunityPageComponent {
   }
 
   addComment(post: Post): void {
-    if (post.newComment?.trim()) {
+    if (post.newComment?.trim() && this.currentUser) {
       const newComment: Comment = {
         content: post.newComment,
-        username: 'Usuario Actual', // Obtener usuario actual desde autenticación
-        shortUsername: '@userActual', // Nombre corto o identificador de usuario actual
+        username: `${this.currentUser.firstname} ${this.currentUser.lastname}`,
+        shortUsername: `@${this.currentUser.username}`,
         timestamp: this.getCurrentTimestamp()
       };
       post.comments.push(newComment);
@@ -122,16 +137,14 @@ export class CommunityPageComponent {
     }
   }
 
-  
-
   toggleModal(): void {
     this.isModalVisible = !this.isModalVisible;
   }
 
   adjustTextAreaHeight(event: Event): void {
     const textarea = event.target as HTMLTextAreaElement;
-    textarea.style.height = 'auto'; // Reinicia la altura para recalcular
-    textarea.style.height = `${textarea.scrollHeight}px`; // Establece la nueva altura basada en el contenido
+    textarea.style.height = 'auto';
+    textarea.style.height = `${textarea.scrollHeight}px`;
   }
 
   getCurrentTimestamp(): string {
