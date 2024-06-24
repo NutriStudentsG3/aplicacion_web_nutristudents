@@ -9,7 +9,7 @@
         <span>Joined: {{user?.username}}</span>
         <span>Name: {{user?.firstname + " " + user?.lastname}}</span>
         <span>Goal: {{user?.plan}}</span>
-        <a *ngIf="userStored.username==user?.username" style="background-color: #88BB49 ;padding: 1rem; border-radius: 50px; color: white; font-size: large;" [routerLink]="['/free-trial']">Upgrade Account</a>
+        <a *ngIf="userStored!.username==user?.username" style="background-color: #88BB49 ;padding: 1rem; border-radius: 50px; color: white; font-size: large;" [routerLink]="['/free-trial']">Upgrade Account</a>
 
         
     </div>
