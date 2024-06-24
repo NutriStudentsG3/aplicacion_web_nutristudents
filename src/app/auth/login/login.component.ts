@@ -27,6 +27,7 @@ export class LoginComponent {
         next: (res) => {
           console.log(res);
           if (res.user) {
+            console.log(res.user)
             this.userStore.setUser(res.user);
             this.router.navigate([this.returnUrl]);
           } else {
