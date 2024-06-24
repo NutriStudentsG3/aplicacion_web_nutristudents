@@ -1,0 +1,50 @@
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+<body>
+    <div class="container">
+        <div class="left-side">
+            <img src="./images/logo.png" alt="Logo" class="logo">
+        </div>
+        <div class="right-side">
+            <div class="login-box">
+                <h1 class="bienvenida">QUEREMOS CONOCERTE MEJOR</h1>
+                <h3>ELIGE CON CUAL TE IDENTIFICAS MEJOR</h3>
+                <div class="options">
+                    <button class="option" (click)="onSelectOption('sedentario')" [class.selected]="selectedOption === 'sedentario'">
+                        <div class="content">
+                            <div class="text">
+                                <h2>SEDENTARIO</h2>
+                                <p>No me ejercito</p>
+                            </div>
+                            <img src="./images/laboral 2.png" alt="Sedentario">
+                        </div>
+                    </button>
+                    <button class="option" (click)="onSelectOption('aficionado')" [class.selected]="selectedOption === 'aficionado'">
+                        <div class="content">
+                            <div class="text">
+                                <h2>AFICIONADO</h2>
+                                <p>Hago ejercicio 1-2</p> 
+                                <p>veces por semana</p>
+                            </div>
+                            <img src="./images/yoga 1.png" alt="Aficionado">
+                        </div>
+                    </button>
+                    <button class="option" (click)="onSelectOption('activo')" [class.selected]="selectedOption === 'activo'">
+                        <div class="content">
+                            <div class="text">
+                                <h2>ACTIVO</h2>
+                                <p>Hago ejercicio 3-4</p>
+                                <p>veces por semana</p>
+                            </div>
+                            <img src="./images/ejercicio 1.png" alt="Activo">
+                        </div>
+                    </button>
+                </div>
+                <form (ngSubmit)="onSubmit()">
+                    <input type="hidden" name="meetuser" [(ngModel)]="selectedOption" required>
+                    <button type="submit" class="submit-btn">SIGUIENTE</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>

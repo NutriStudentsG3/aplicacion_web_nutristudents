@@ -1,0 +1,4 @@
+<mat-tab-group class="tab-group">
+    <mat-tab label="Publications"> <app-post-section ></app-post-section> </mat-tab>
+    <mat-tab label="Edit Information" *ngIf="user?.username===userStored?.username"><app-information-form/></mat-tab>
+</mat-tab-group>

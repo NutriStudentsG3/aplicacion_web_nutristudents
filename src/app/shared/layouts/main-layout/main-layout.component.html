@@ -1,0 +1,26 @@
+
+<body class="layout-body">
+    <header class="header-container">
+        <a class="header-title" routerLink="/home">SnackTrack</a>
+        <app-search-bar/>
+        <div class="header-nav">
+            <a class="header-nav-item" routerLink="/home">Home</a>
+            <a class="header-nav-item" routerLink="/community">Comunidad</a>
+            <a class="header-nav-item" routerLink="/plans">Planes</a>
+        </div>
+        <ng-container *ngIf="user; else loggedOut">
+            <a [routerLink]="['/profile'
+        , this.user!.username]">
+                <img  class="header-image" src="/images/profile-user.webp" alt="">
+            </a>
+        </ng-container>
+        <ng-template #loggedOut >
+            <a routerLink="/login">Login</a>
+        </ng-template>
+        
+    </header>
+
+    
+    <router-outlet></router-outlet>
+
+</body>

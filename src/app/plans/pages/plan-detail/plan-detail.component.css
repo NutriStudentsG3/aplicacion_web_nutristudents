@@ -1,0 +1,79 @@
+h1{
+  font-size: 4em; /* Aumenta el tamaño de la fuente para que resalte más */
+  margin: 20px 0; /* Espacio alrededor del título */
+  padding-left: 20px; /* Alinear el título a la izquierda */
+  color: black; /* Cambia el color del texto */
+  background-color: white; /* Cambia el color de fondo */
+}
+
+.plan-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  position: relative;
+  min-height: 100vh;
+  margin: 40px;
+}
+
+.plan-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.plan-name {
+  font-size: 24px;
+  margin: 0;
+}
+
+.delete-button {
+  border: none;
+  background: none;
+  color: red;
+  cursor: pointer;
+}
+
+.week-day-selector {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.week-selector, .day-selector {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.week-selector label, .day-selector label {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.week-selector select, .day-selector select {
+  padding: 20px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.meals-container {
+  margin-bottom: 100px; /* leave space for the save button */
+
+}
+
+.save-button {
+  display: block;
+  width: calc(100% - 40px); /* Account for padding */
+  padding: 15px;
+  background-color: #88BB49;
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+}

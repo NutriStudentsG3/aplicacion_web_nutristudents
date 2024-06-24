@@ -1,0 +1,39 @@
+
+.form-input .mat-form-field-outline {
+    border-radius: 8px;
+    background-color: white;
+}
+
+.form-container{
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.input-container{
+    display: flex;
+    flex-direction: column;
+}
+.input-container span{
+    margin-bottom: 1rem;
+}
+
+.submit-button{
+    border: solid;
+    border-radius: 50px;
+    background-color: #88BB49;
+    color: white;
+    font-size: larger;
+    width: fit-content;
+    padding: 0.5rem 4rem;
+}
+
+button.submit-button:disabled {
+    background-color: gray !important;
+    color: white !important;
+}
+
+.advice-message{
+    color: gray;
+}
