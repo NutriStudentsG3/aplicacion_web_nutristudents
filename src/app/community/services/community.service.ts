@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Post } from '../models/posts.model';
 
 @Injectable({
@@ -43,17 +44,37 @@ export class CommunityService {
     }
   ];
 
-  constructor() { }
+ 
+  private userPosts: Post[] = [];
+
+  private postsSubject: BehaviorSubject<Post[]> = new BehaviorSubject<Post[]>([...this.posts, ...this.userPosts]);
+  public posts$: Observable<Post[]> = this.postsSubject.asObservable();
+
+  private userPostsSubject: BehaviorSubject<Post[]> = new BehaviorSubject<Post[]>(this.userPosts);
+  public userPosts$: Observable<Post[]> = this.userPostsSubject.asObservable();
+
+  constructor() {}
 
   getAllPosts(): Post[] {
-    return this.posts;
+    return [...this.posts, ...this.userPosts];
   }
 
   addPost(post: Post): void {
     this.posts.unshift(post);
   }
 
+  addUserPost(post: Post): void {
+    this.userPosts.unshift(post);
+    this.posts.unshift(post);
+    this.userPostsSubject.next(this.userPosts); // Emitir la nueva lista de posts creados por el usuario
+    this.updatePosts();
+  }
+
+  private updatePosts(): void {
+    this.postsSubject.next([...this.posts, ...this.userPosts]);
+  }
+
   findPostsByUsername(username: string): Post[] {
-    return this.posts.filter(post => post.shortUsername === username);
+    return [...this.posts, ...this.userPosts].filter(post => post.shortUsername === username);
   }
 }

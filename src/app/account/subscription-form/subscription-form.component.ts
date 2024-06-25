@@ -55,6 +55,6 @@ export class SubscriptionFormComponent {
   formatCVV(event: any) {
     let value = event.target.value;
     value = value.replace(/\D/g, '');
-    event.target.value = value.slice(0, 4);
+    event.target.value = value.slice(0, 3);
   }
 }

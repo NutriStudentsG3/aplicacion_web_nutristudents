@@ -1,32 +1,31 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Post, Comment } from '../../../../community/models/posts.model';
 import { CommunityService } from './../../../../community/services/community.service';
-import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-post-section',
   templateUrl: './post-section.component.html',
-  styleUrls: ['./post-section.component.css']  // Corrected the styleUrls property name
+  styleUrls: ['./post-section.component.css']
 })
-export class PostSectionComponent implements OnInit {
+export class PostSectionComponent implements OnInit, OnDestroy {
   posts: Post[] = [];
-  username: string | undefined;
+  private postsSubscription: Subscription | undefined;
 
-  constructor(private postService: CommunityService, private activatedRoute: ActivatedRoute) {}
+  constructor(private postService: CommunityService) {}
 
   ngOnInit(): void {
-    this.activatedRoute.paramMap.subscribe(params => {
-      this.username = params.get('id')!;
-      if (this.username) {
-        this.loadPosts();
-      }
+    // Suscribirse a los cambios en los posts creados por el usuario
+    this.postsSubscription = this.postService.userPosts$.subscribe(userPosts => {
+      this.posts = userPosts;
     });
-    
   }
 
-  loadPosts(): void {
-    this.posts = this.postService.findPostsByUsername(this.username!);
-    console.log(this.posts);
+  ngOnDestroy(): void {
+    // Desuscribirse para evitar fugas de memoria
+    if (this.postsSubscription) {
+      this.postsSubscription.unsubscribe();
+    }
   }
 
   likePost(post: Post): void {
